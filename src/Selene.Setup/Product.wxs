@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?>
 	<Product Id="*" Name="Selene" Language="1033" Version="1.0.0.0" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove"/>
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove" />
 
     <UI>
       <UIRef Id="WixUI_Minimal" />
@@ -13,13 +13,13 @@
     <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\license.rtf" />
 
     <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Selene" />
-    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1" />
     
     <Property Id="WixShellExecTarget" Value="[#Selene.exe]" />
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
     
     <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate EmbedCab="yes"/>
+		<MediaTemplate EmbedCab="yes" />
 
 		<Feature Id="ProductFeature" Title="Selene" Level="1">
       <ComponentRef Id="ApplicationShortcut" />
@@ -50,27 +50,27 @@
   
   <Fragment>
     <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-      <Component Id="Selene.exe" Guid="a17b58af-64b8-4444-aeec-9a2f3a34d4a2">
-        <File Id="Selene.exe" Name="Selene.exe" Source="$(var.Selene_TargetDir)Selene.exe" />
-      </Component>
-      <Component Id="Selene.exe.config" Guid="b3266ff4-01cf-4870-ab0f-aebc90e91cb9">
-        <File Id="Selene.exe.config" Name="Selene.exe.config" Source="$(var.Selene_TargetDir)Selene.exe.config" />
-      </Component>
-      <Component Id="NetCoreEx.Geometry.dll" Guid="63ddf486-3ae9-41b9-b05c-e90780e18f43">
-        <File Id="NetCoreEx.Geometry.dll" Name="NetCoreEx.Geometry.dll" Source="$(var.Selene_TargetDir)NetCoreEx.Geometry.dll" />
-      </Component>
-      <Component Id="WpfAppBar.dll" Guid="7ec243bd-df5b-4e20-9d3c-989f7a1c1391">
-        <File Id="WpfAppBar.dll" Name="WpfAppBar.dll" Source="$(var.Selene_TargetDir)WpfAppBar.dll" />
-      </Component>
-      <Component Id="WinApi.dll" Guid="9807c89a-583c-4a91-bbdd-941faa393fe6">
-        <File Id="WinApi.dll" Name="WinApi.dll" Source="$(var.Selene_TargetDir)WinApi.dll" />
-      </Component>
-      <Component Id="System.Runtime.WindowsRuntime.dll" Guid="f322120a-11e5-43f9-81ff-cf75e0f4b28d">
-        <File Id="System.Runtime.WindowsRuntime.dll" Name="System.Runtime.WindowsRuntime.dll" Source="$(var.Selene_TargetDir)System.Runtime.WindowsRuntime.dll" />
-      </Component>
-      <Component Id="NetCoreEx.BinaryExtensions.dll" Guid="81f09581-e2fd-4acd-9c1d-80538633a46c">
-        <File Id="NetCoreEx.BinaryExtensions.dll" Name="NetCoreEx.BinaryExtensions.dll" Source="$(var.Selene_TargetDir)NetCoreEx.BinaryExtensions.dll" />
-      </Component>
+    <Component Id="Selene.exe" Guid="143dfc4c-efd1-43dc-a76e-b1a36134c7ac">
+      <File Id="Selene.exe" Name="Selene.exe" Source="$(var.Selene_TargetDir)Selene.exe" />
+    </Component>
+    <Component Id="Selene.exe.config" Guid="df48523e-58d7-474a-857f-198e52c48bb7">
+      <File Id="Selene.exe.config" Name="Selene.exe.config" Source="$(var.Selene_TargetDir)Selene.exe.config" />
+    </Component>
+    <Component Id="NetCoreEx.Geometry.dll" Guid="59e80ab7-f225-4b68-b9ea-3f78a1283264">
+      <File Id="NetCoreEx.Geometry.dll" Name="NetCoreEx.Geometry.dll" Source="$(var.Selene_TargetDir)NetCoreEx.Geometry.dll" />
+    </Component>
+    <Component Id="WpfAppBar.dll" Guid="e0ba9309-fa0f-4b23-ab2f-3866a6d33c22">
+      <File Id="WpfAppBar.dll" Name="WpfAppBar.dll" Source="$(var.Selene_TargetDir)WpfAppBar.dll" />
+    </Component>
+    <Component Id="WinApi.dll" Guid="2721b5b2-de5f-434d-bc35-a552b83913e8">
+      <File Id="WinApi.dll" Name="WinApi.dll" Source="$(var.Selene_TargetDir)WinApi.dll" />
+    </Component>
+    <Component Id="NetCoreEx.BinaryExtensions.dll" Guid="967fa460-80f7-4084-b0d8-c438bf46cf4e">
+      <File Id="NetCoreEx.BinaryExtensions.dll" Name="NetCoreEx.BinaryExtensions.dll" Source="$(var.Selene_TargetDir)NetCoreEx.BinaryExtensions.dll" />
+    </Component>
+     
+      
+      
     </ComponentGroup>
   </Fragment>
 </Wix>

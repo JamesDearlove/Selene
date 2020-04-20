@@ -1,4 +1,7 @@
-# TopBar
+# Selene
+
+[![Build Status](https://jamesdearlove.visualstudio.com/Selene/_apis/build/status/Selene%20MSI%20Build?branchName=master)](https://jamesdearlove.visualstudio.com/Selene/_build/latest?definitionId=3&branchName=master)
+
 A system status bar built for Windows.
 
 ## Building
