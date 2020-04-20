@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?>
+	<Product Id="*" Name="Selene" Language="1033" Version="1.0.0.0" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove"/>
+
+    <UI>
+      <UIRef Id="WixUI_Minimal" />
+      <Publish Dialog="ExitDialog" Control="Finish" Event="DoAction" Value="LaunchApplication">
+        WIXUI_EXITDIALOGOPTIONALCHECKBOX = 1 and NOT Installed
+      </Publish>
+    </UI>
+    
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)\license.rtf" />
+
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOXTEXT" Value="Launch Selene" />
+    <Property Id="WIXUI_EXITDIALOGOPTIONALCHECKBOX" Value="1"/>
+    
+    <Property Id="WixShellExecTarget" Value="[#Selene.exe]" />
+    <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
+    
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes"/>
+
+		<Feature Id="ProductFeature" Title="Selene" Level="1">
+      <ComponentRef Id="ApplicationShortcut" />
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Selene" />
+			</Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="Selene" />
+      </Directory>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortcut" Guid="7C2402F5-95F1-4289-9FC6-0907BBFCE277">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="Selene" Description="Status Bar for Windows" Target="[INSTALLFOLDER]Selene.exe" WorkingDirectory="INSTALLFOLDER" />
+        <RemoveFolder Id="CleanUpShortCut" Directory="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\Selene" Name="installed" Type="integer" Value="1" KeyPath="yes" />
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+  
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="Selene.exe" Guid="a17b58af-64b8-4444-aeec-9a2f3a34d4a2">
+        <File Id="Selene.exe" Name="Selene.exe" Source="$(var.Selene_TargetDir)Selene.exe" />
+      </Component>
+      <Component Id="Selene.exe.config" Guid="b3266ff4-01cf-4870-ab0f-aebc90e91cb9">
+        <File Id="Selene.exe.config" Name="Selene.exe.config" Source="$(var.Selene_TargetDir)Selene.exe.config" />
+      </Component>
+      <Component Id="NetCoreEx.Geometry.dll" Guid="63ddf486-3ae9-41b9-b05c-e90780e18f43">
+        <File Id="NetCoreEx.Geometry.dll" Name="NetCoreEx.Geometry.dll" Source="$(var.Selene_TargetDir)NetCoreEx.Geometry.dll" />
+      </Component>
+      <Component Id="WpfAppBar.dll" Guid="7ec243bd-df5b-4e20-9d3c-989f7a1c1391">
+        <File Id="WpfAppBar.dll" Name="WpfAppBar.dll" Source="$(var.Selene_TargetDir)WpfAppBar.dll" />
+      </Component>
+      <Component Id="WinApi.dll" Guid="9807c89a-583c-4a91-bbdd-941faa393fe6">
+        <File Id="WinApi.dll" Name="WinApi.dll" Source="$(var.Selene_TargetDir)WinApi.dll" />
+      </Component>
+      <Component Id="System.Runtime.WindowsRuntime.dll" Guid="f322120a-11e5-43f9-81ff-cf75e0f4b28d">
+        <File Id="System.Runtime.WindowsRuntime.dll" Name="System.Runtime.WindowsRuntime.dll" Source="$(var.Selene_TargetDir)System.Runtime.WindowsRuntime.dll" />
+      </Component>
+      <Component Id="NetCoreEx.BinaryExtensions.dll" Guid="81f09581-e2fd-4acd-9c1d-80538633a46c">
+        <File Id="NetCoreEx.BinaryExtensions.dll" Name="NetCoreEx.BinaryExtensions.dll" Source="$(var.Selene_TargetDir)NetCoreEx.BinaryExtensions.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
