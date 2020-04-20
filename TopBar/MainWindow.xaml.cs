@@ -16,7 +16,8 @@ using System.Windows.Forms;
 using WpfAppBar;
 using System.Windows.Threading;
 using WinApi.User32;
-using WinApi.Core;
+using System.Diagnostics;
+using Windows.Media.Control;
 
 namespace TopBar
 {
@@ -31,6 +32,8 @@ namespace TopBar
 
         double batteryPercent;
         System.Windows.Forms.PowerLineStatus plStatus;
+
+        bool SettingBar = true;
 
         public MainWindow()
         {
@@ -55,7 +58,10 @@ namespace TopBar
 
             this.Height = StatusBarHeight;
 
+            NowPlayingSys();
+
             AppBarFunctions.SetAppBar(this, ABEdge.Top);
+            SettingBar = false;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -126,6 +132,8 @@ namespace TopBar
             }
 
             CurrentTimeText.Text = DateTime.Now.ToString("hh:mm:ss tt");
+
+            //NowPlaying();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -165,6 +173,33 @@ namespace TopBar
             //User32Methods.ShowWindow(statusOverflow, ShowWindowCommands.)
         }
 
+        private void ClockTrayToggle(object sender, RoutedEventArgs e)
+        {
+
+            IntPtr statusOverflow = User32Methods.FindWindow("TrayClockWClass", null);
+
+            if (User32Methods.IsWindowVisible(statusOverflow))
+            {
+                User32Methods.ShowWindow(statusOverflow, ShowWindowCommands.SW_HIDE);
+            }
+            else
+            {
+                int buttonWidth = (int)StatusOverflow.Width;
+                int buttonHeight = (int)StatusOverflow.Height;
+                Point buttonPos = StatusOverflow.PointToScreen(new Point(0d, 0d));
+                User32Methods.ShowWindow(statusOverflow, ShowWindowCommands.SW_SHOWNORMAL);
+
+                NetCoreEx.Geometry.Rectangle windowRect;
+                User32Methods.GetWindowRect(statusOverflow, out windowRect);
+
+                int X = (int)buttonPos.X + 15 - windowRect.Width / 2;
+                int Y = (int)buttonPos.Y + StatusBarHeight;
+
+                User32Methods.MoveWindow(statusOverflow, X, Y, windowRect.Width, windowRect.Height, true);
+            }
+            //User32Methods.ShowWindow(statusOverflow, ShowWindowCommands.)
+        }
+
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             IntPtr window = User32Methods.FindWindow("SystemTray_Main", "Battery Meter");
@@ -174,6 +209,85 @@ namespace TopBar
         private void ActionCenterButton_Click(object sender, RoutedEventArgs e)
         {
             System.Diagnostics.Process.Start("ms-actioncenter:");
+        }
+
+        private void FixSize()
+        {
+            if (!SettingBar)
+            {
+                SettingBar = true;
+                AppBarFunctions.SetAppBar(this, ABEdge.None);
+                AppBarFunctions.SetAppBar(this, ABEdge.Top);
+                SettingBar = false;
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            FixSize();
+        }
+
+        public void NowPlaying()
+        {
+            string NowPlaying = "";
+
+            var spotify = Process.GetProcessesByName("Spotify");
+            foreach (var song in spotify)
+            {
+                if (song.MainWindowTitle != "")
+                {
+                    NowPlaying = song.MainWindowTitle;
+                }
+            }
+
+            MusicPlaying.Text = NowPlaying;
+        }
+
+        private GlobalSystemMediaTransportControlsSessionManager SMTC;
+
+        public async void UpdateMusicPlaying(GlobalSystemMediaTransportControlsSession session, MediaPropertiesChangedEventArgs args)
+        {
+            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                if (session != null && session.GetPlaybackInfo() != null)
+                    UpdateSessionInfo(session);
+
+            }));
+        }
+
+        private async void UpdateSessionInfo(GlobalSystemMediaTransportControlsSession session)
+        {
+            try
+            {
+                var mediaInfo = await session.TryGetMediaPropertiesAsync();
+                MusicPlaying.Text = mediaInfo.Artist + " - " + mediaInfo.Title; 
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        public async void NowPlayingSys()
+        {
+            SMTC = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
+
+            var sessions = SMTC.GetSessions();
+
+            if (sessions.Count == 0)
+            {
+                MusicPlaying.Text = "";
+            }
+            foreach (var session in sessions)
+            {
+                UpdateSessionInfo(session);
+                session.MediaPropertiesChanged += UpdateMusicPlaying;
+            }
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            NowPlayingSys();
         }
     }
 

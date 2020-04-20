@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="TopBar"
         Height="30" 
-        Width="500" 
+        Width="800" 
         Loaded="Window_Loaded" 
         Closing="Window_Closing" 
         Background="#00000000"
@@ -20,7 +20,18 @@
                 <local:WinIcon Glyph="&#xE71D;" Size="16"/>
             </Button>
         </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Foreground="White" Click="Button_Click_3">
+                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="0" Height="30">
+                    <local:WinIcon Glyph="&#xEC4F;" Size="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="MusicPlaying" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0,10,0">Love Story - Taylor Swift</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="30">
+            <Button  Width="40" ToolTip="Reset TopBar" Click="Button_Click_1">
+                <local:WinIcon Glyph="&#xE72C;" Size="16"/>
+            </Button>
             <Button x:Name="StatusOverflow" Width="40" Click="OverflowTrayToggle">
                 <local:WinIcon Glyph="&#xE70D;" Size="16"/>
             </Button>
@@ -31,11 +42,15 @@
                     <TextBlock x:Name="BatteryLevelText" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0"></TextBlock>
                 </StackPanel>
             </Button>
-            <Button Foreground="White">
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="0" Height="30">
-                    <local:WinIcon Glyph="&#xE121;" Size="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CurrentTimeText" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0,10,0"></TextBlock>
-                </StackPanel>
+            <Button Foreground="White" Click="ClockTrayToggle">
+                <Grid HorizontalAlignment="Stretch" Margin="0" Width="135" Height="30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="26"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <local:WinIcon Glyph="&#xE121;" Size="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                    <TextBlock x:Name="CurrentTimeText" Grid.Column="1" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0,10,0">12:00:00 PM</TextBlock>
+                </Grid>
             </Button>
             <Button x:Name="ActionCenterButton" Width="40" ToolTip="Action Center" Click="ActionCenterButton_Click">
                 <local:WinIcon Glyph="&#xE91C;" Size="16"/>
