@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TopBar", "TopBar\TopBar.csproj", "{0746022B-4A2F-452B-AEB0-555773D18A11}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selene", "src\Selene.csproj", "{0746022B-4A2F-452B-AEB0-555773D18A11}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

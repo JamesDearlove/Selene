@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace TopBar
+namespace Selene
 {
     /// <summary>
     /// Interaction logic for Icon.xaml

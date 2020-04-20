@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TopBar.Properties
+namespace Selene.Properties
 {
 
 

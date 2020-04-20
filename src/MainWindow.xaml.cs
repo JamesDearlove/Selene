@@ -19,7 +19,7 @@ using WinApi.User32;
 using System.Diagnostics;
 using Windows.Media.Control;
 
-namespace TopBar
+namespace Selene
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
