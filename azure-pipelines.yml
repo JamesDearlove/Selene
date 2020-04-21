@@ -32,7 +32,10 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+- task: AssembyInfoReader@2
+  inputs:
+    searchPattern: '**\AssemblyInfo.cs'
+    
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
