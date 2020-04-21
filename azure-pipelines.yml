@@ -32,7 +32,7 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+    
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
@@ -43,7 +43,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: '$(AssemblyInfo.AssemblyVersion)_msi'
+    ArtifactName: 'Installer'
     publishLocation: 'Container'
 
 - task: CopyFiles@2
@@ -57,5 +57,5 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: '$(AssemblyInfo.AssemblyVersion)_portable'
+    ArtifactName: 'Portable'
     publishLocation: 'Container'
