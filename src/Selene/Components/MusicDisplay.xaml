@@ -10,7 +10,7 @@
         <StackPanel>
             <TextBlock x:Name="MusicStatus" Style="{StaticResource MDL2Asset}">&#xEC4F;</TextBlock>
             <Separator/>
-            <TextBlock x:Name="MusicPlaying">Love Story - Taylor Swift</TextBlock>
+            <TextBlock x:Name="MusicPlaying"></TextBlock>
         </StackPanel>
     </Button>
 </UserControl>

@@ -10,7 +10,7 @@
         <StackPanel>
             <TextBlock Style="{StaticResource MDL2Asset}">&#xE121;</TextBlock>
             <Separator/>
-            <TextBlock x:Name="CurrentTimeText">22:22:22 AM</TextBlock>
+            <TextBlock x:Name="CurrentTimeText"></TextBlock>
         </StackPanel>
     </Button>
 </UserControl>
