@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="400">
-    <Button Style="{StaticResource ComponentButtonStyle}" Click="Button_Click_3">
+    <Button x:Name="MainButton" Style="{StaticResource ComponentButtonStyle}" Click="Button_Click">
         <StackPanel>
             <TextBlock x:Name="MusicStatus" Style="{StaticResource MDL2Asset}">&#xEC4F;</TextBlock>
             <Separator/>

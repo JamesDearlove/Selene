@@ -23,16 +23,16 @@ namespace Selene.Components
     /// </summary>
     public partial class MusicDisplay : UserControl
     {
+        private GlobalSystemMediaTransportControlsSessionManager SMTC;
+
+        private GlobalSystemMediaTransportControlsSession CurrentSession;
+        
         public MusicDisplay()
         {
             InitializeComponent();
 
-            NowPlayingSys();
+            SetupNowPlaying();
         }
-
-        private GlobalSystemMediaTransportControlsSessionManager SMTC;
-
-        private GlobalSystemMediaTransportControlsSession CurrentSession;
 
         public async void UpdateMediaProperties(GlobalSystemMediaTransportControlsSession session, MediaPropertiesChangedEventArgs args)
         {
@@ -50,7 +50,14 @@ namespace Selene.Components
             try
             {
                 var mediaInfo = await session.TryGetMediaPropertiesAsync();
-                MusicPlaying.Text = mediaInfo.Artist + " - " + mediaInfo.Title;
+                if (mediaInfo.Artist != "")
+                {
+                    MusicPlaying.Text = mediaInfo.Artist + " - " + mediaInfo.Title;
+                } 
+                else
+                {
+                    MusicPlaying.Text = mediaInfo.Title;
+                }
             }
             catch (Exception)
             {
@@ -99,27 +106,49 @@ namespace Selene.Components
             }
         }
 
-        public async void NowPlayingSys()
+        public async void SetupNowPlaying()
         {
             SMTC = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
 
-            var sessions = SMTC.GetSessions();
+            CurrentSession = SMTC.GetCurrentSession();
 
-            if (sessions.Count == 0)
+            if (CurrentSession != null)
             {
-                MusicPlaying.Text = "";
+                UpdateSessionInfo(CurrentSession);
+                MainButton.Visibility = Visibility.Visible;
             }
-            foreach (var session in sessions)
+            else
             {
-                UpdateSessionInfo(session);
-                session.MediaPropertiesChanged += UpdateMediaProperties;
-                //session.PlaybackInfoChanged += UpdatePlaybackInfo;
+                MainButton.Visibility = Visibility.Collapsed;
             }
+
+            SMTC.CurrentSessionChanged += SMTC_CurrentSessionChanged;
         }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
+        private async void SMTC_CurrentSessionChanged(GlobalSystemMediaTransportControlsSessionManager smtc, CurrentSessionChangedEventArgs args)
         {
-            NowPlayingSys();
+            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                if (CurrentSession != null)
+                {
+                    CurrentSession.MediaPropertiesChanged -= UpdateMediaProperties;
+                }
+                CurrentSession = smtc.GetCurrentSession();
+                if (CurrentSession != null)
+                {
+                    CurrentSession.MediaPropertiesChanged += UpdateMediaProperties;
+                    MainButton.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    MainButton.Visibility = Visibility.Collapsed;
+                }
+            }));
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            SMTC_CurrentSessionChanged(SMTC, null);
         }
     }
 }
