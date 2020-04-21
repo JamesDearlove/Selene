@@ -43,7 +43,7 @@
                 </StackPanel>
             </Button>
             <Button Foreground="White" Click="ClockTrayToggle">
-                <Grid HorizontalAlignment="Stretch" Margin="0" Width="135" Height="30">
+                <Grid HorizontalAlignment="Stretch" Margin="0" Width="140" Height="30">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="26"/>
                         <ColumnDefinition/>
