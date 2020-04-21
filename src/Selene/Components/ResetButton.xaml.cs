@@ -12,21 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfAppBar;
 
-namespace Selene
+namespace Selene.Components
 {
     /// <summary>
-    /// Interaction logic for Icon.xaml
+    /// Interaction logic for ResetButton.xaml
     /// </summary>
-    public partial class WinIcon : UserControl
+    public partial class ResetButton : UserControl
     {
-        public int Size { get; set; }
-        public string Glyph { get; set; }
-
-        public WinIcon()
+        public ResetButton()
         {
             InitializeComponent();
-            DataContext = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Window.GetWindow(this);
+            AppBarFunctions.SetAppBar(mainWindow, ABEdge.None);
+            AppBarFunctions.SetAppBar(mainWindow, ABEdge.Top);
         }
     }
 }

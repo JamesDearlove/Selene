@@ -63,6 +63,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.ServiceModel" />
@@ -85,7 +86,39 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="WinIcon.xaml">
+    <Page Include="Components\ActionCenterButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\BatteryDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\LauncherButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\MusicDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\PowerButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\ResetButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\SysTrayOverflowButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\TimeDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\WinIcon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,9 +130,34 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WinIcon.xaml.cs">
+    <Compile Include="Components\ActionCenterButton.xaml.cs">
+      <DependentUpon>ActionCenterButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\BatteryDisplay.xaml.cs">
+      <DependentUpon>BatteryDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\LauncherButton.xaml.cs">
+      <DependentUpon>LauncherButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\MusicDisplay.xaml.cs">
+      <DependentUpon>MusicDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\PowerButton.xaml.cs">
+      <DependentUpon>PowerButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\ResetButton.xaml.cs">
+      <DependentUpon>ResetButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\SysTrayOverflowButton.xaml.cs">
+      <DependentUpon>SysTrayOverflowButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\TimeDisplay.xaml.cs">
+      <DependentUpon>TimeDisplay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\WinIcon.xaml.cs">
       <DependentUpon>WinIcon.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Classes\Glyphs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -159,5 +217,6 @@
       <Version>2.0.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

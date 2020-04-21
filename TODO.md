@@ -3,7 +3,7 @@
 ## General
 
 * [ ] Start at start-up
-* [ ] App Installer
+* [x] App Installer
 
 ## Status Icons
 
@@ -46,3 +46,8 @@
 * [ ] Background
 * [ ] Accent Colour
 * [ ] Font Change
+* [ ] Theming
+
+## Extras
+
+* [ ] Plugins

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Selene"
+        xmlns:c="clr-namespace:Selene.Components"
         mc:Ignorable="d"
         Title="Selene"
         Height="30" 
@@ -14,50 +15,20 @@
         AllowsTransparency="True"
         WindowStyle="None" Foreground="White" ShowInTaskbar="False">
 
-    <Grid Background="#E5000000" TextOptions.TextFormattingMode = "Display">
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Width="40">
-                <local:WinIcon Glyph="&#xE71D;" Size="16"/>
-            </Button>
+    <Grid Background="#E5000000">
+        <StackPanel x:Name="LeftPanel" Orientation="Horizontal" HorizontalAlignment="Left">
+            <c:LauncherButton/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Foreground="White" Click="Button_Click_3">
-                <StackPanel HorizontalAlignment="Stretch" Orientation="Horizontal" Margin="0" Height="30">
-                    <local:WinIcon Glyph="&#xEC4F;" Size="16" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="MusicPlaying" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0,10,0">Love Story - Taylor Swift</TextBlock>
-                </StackPanel>
-            </Button>
+        <StackPanel x:Name="CenterPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+            <c:MusicDisplay/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Height="30">
-            <Button  Width="40" ToolTip="Reset Selene" Click="Button_Click_1">
-                <local:WinIcon Glyph="&#xE72C;" Size="16"/>
-            </Button>
-            <Button x:Name="StatusOverflow" Width="40" Click="OverflowTrayToggle">
-                <local:WinIcon Glyph="&#xE70D;" Size="16"/>
-            </Button>
-            <Button Foreground="White">
-                <StackPanel Orientation="Horizontal" Height="30">
-                    <!--<local:WinIcon x:Name="BatteryIcon" Glyph="&#xF5F3;" Size="16" VerticalAlignment="Center"/>-->
-                    <TextBlock x:Name="BatteryIcon" VerticalAlignment="Center" FontFamily="Segoe MDL2 Assets" FontSize="16" Foreground="White" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="BatteryLevelText" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0"></TextBlock>
-                </StackPanel>
-            </Button>
-            <Button Foreground="White" Click="ClockTrayToggle">
-                <Grid HorizontalAlignment="Stretch" Margin="0" Width="140" Height="30">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="26"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <local:WinIcon Glyph="&#xE121;" Size="16" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0"/>
-                    <TextBlock x:Name="CurrentTimeText" Grid.Column="1" VerticalAlignment="Center" FontFamily="Segoe UI Semibold" FontSize="16" Margin="10,0,10,0">12:00:00 PM</TextBlock>
-                </Grid>
-            </Button>
-            <Button x:Name="ActionCenterButton" Width="40" ToolTip="Action Center" Click="ActionCenterButton_Click">
-                <local:WinIcon Glyph="&#xE91C;" Size="16"/>
-            </Button>
-            <Button Width="40" ToolTip="Close Selene" Click="Button_Click">
-                <local:WinIcon Glyph="&#xE7E8;" Size="16"/>
-            </Button>
+        <StackPanel x:Name="RightPanel" Orientation="Horizontal" HorizontalAlignment="Right">
+            <c:ResetButton/>
+            <c:SysTrayOverflowButton/>
+            <c:BatteryDisplay/>
+            <c:TimeDisplay/>
+            <c:ActionCenterButton/>
+            <c:PowerButton/>
         </StackPanel>
     </Grid>
 </Window>

@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="Selene.Components.MusicDisplay"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Selene.Components"
+             mc:Ignorable="d" 
+             d:DesignHeight="30" d:DesignWidth="400">
+    <Button Style="{StaticResource ComponentButtonStyle}" Click="Button_Click_3">
+        <StackPanel>
+            <TextBlock x:Name="MusicStatus" Style="{StaticResource MDL2Asset}">&#xEC4F;</TextBlock>
+            <Separator/>
+            <TextBlock x:Name="MusicPlaying">Love Story - Taylor Swift</TextBlock>
+        </StackPanel>
+    </Button>
+</UserControl>
