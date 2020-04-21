@@ -26,9 +26,9 @@
 
 ## Music Display
 
-* [ ] Display Music
+* [X] Display Music
   * [X] Basic Display
-  * [ ] Automatic change to current playing
+  * [X] Automatic change to current playing
 * [ ] Music flyout
   * [ ] Play/Pause
   * [ ] Skip
