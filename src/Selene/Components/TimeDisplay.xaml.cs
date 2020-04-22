@@ -34,10 +34,19 @@ namespace Selene.Components
 
         private async void TimerTick(object state)
         {
-            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            try
             {
-                CurrentTimeText.Text = DateTime.Now.ToString("hh:mm:ss tt");
-            }));
+                await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+                {
+                    CurrentTimeText.Text = DateTime.Now.ToString("hh:mm:ss tt");
+                }));
+            }
+            catch (TaskCanceledException) { }
+        }
+
+        private void UserControl_Unloaded(object sender, RoutedEventArgs e)
+        {
+            TimeTimer.Dispose();
         }
     }
 }
