@@ -136,6 +136,7 @@ namespace Selene.Components
                 CurrentSession = smtc.GetCurrentSession();
                 if (CurrentSession != null)
                 {
+                    UpdateSessionInfo(CurrentSession);
                     CurrentSession.MediaPropertiesChanged += UpdateMediaProperties;
                     MainButton.Visibility = Visibility.Visible;
                 }
