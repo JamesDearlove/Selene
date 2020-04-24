@@ -18,6 +18,7 @@ using System.Windows.Threading;
 using WinApi.User32;
 using System.Diagnostics;
 using Windows.Media.Control;
+using System.Windows.Interop;
 
 namespace Selene
 {
@@ -27,8 +28,6 @@ namespace Selene
     public partial class MainWindow : Window
     {
         int StatusBarHeight = 30;
-
-        bool SettingBar = true;
 
         public MainWindow()
         {
@@ -41,7 +40,17 @@ namespace Selene
             this.Height = StatusBarHeight;
 
             AppBarFunctions.SetAppBar(this, ABEdge.Top);
-            SettingBar = false;
+            HideFromTab();
+        }
+
+        private void HideFromTab()
+        {
+            var wndHelper = new WindowInteropHelper(this);
+            var exStyle = (long)User32Methods.GetWindowLongPtr(wndHelper.Handle, (int)WindowLongFlags.GWL_EXSTYLE);
+
+            exStyle |= (int)WindowExStyles.WS_EX_TOOLWINDOW;
+            User32Methods.SetWindowLongPtr(wndHelper.Handle, (int)WindowLongFlags.GWL_EXSTYLE, (IntPtr)exStyle);
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
