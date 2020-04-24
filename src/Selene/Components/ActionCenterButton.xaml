@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="40">
-    <Button Style="{StaticResource ComponentButtonStyle}" ToolTip="Action Center" Click="Button_Click">
-        <TextBlock Style="{StaticResource MDL2Asset}">&#xE91C;</TextBlock>
+    <Button Style="{DynamicResource ComponentButtonStyle}" ToolTip="Action Center" Click="Button_Click">
+        <TextBlock Style="{DynamicResource MDL2Asset}">&#xE91C;</TextBlock>
     </Button>
 </UserControl>

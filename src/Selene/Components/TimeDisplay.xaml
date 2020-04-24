@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="400" Unloaded="UserControl_Unloaded">
-    <Button Style="{StaticResource ComponentButtonStyle}">
+    <Button Style="{DynamicResource ComponentButtonStyle}">
         <StackPanel>
-            <TextBlock Style="{StaticResource MDL2Asset}">&#xE121;</TextBlock>
+            <TextBlock Style="{DynamicResource MDL2Asset}">&#xE121;</TextBlock>
             <Separator/>
             <TextBlock x:Name="CurrentTimeText"></TextBlock>
         </StackPanel>

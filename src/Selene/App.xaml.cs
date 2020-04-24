@@ -30,6 +30,5 @@ namespace Selene
             }
 #endif
         }
-
     }
 }

@@ -15,7 +15,7 @@
         AllowsTransparency="True"
         WindowStyle="None" ShowInTaskbar="False">
 
-    <Grid Background="#E5000000">
+    <Grid>
         <StackPanel x:Name="LeftPanel" Orientation="Horizontal" HorizontalAlignment="Left">
             <c:LauncherButton/>
         </StackPanel>
@@ -23,8 +23,11 @@
             <c:MusicDisplay/>
         </StackPanel>
         <StackPanel x:Name="RightPanel" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Style="{DynamicResource ComponentButtonStyle}" Click="Button_Click_1">
+                <TextBlock Style="{DynamicResource MDL2Asset}">&#xE790;</TextBlock>
+            </Button>
             <c:ResetButton/>
-            <c:SysTrayOverflowButton/>
+            <!--<c:SysTrayOverflowButton/>-->
             <c:BatteryDisplay/>
             <c:TimeDisplay/>
             <c:ActionCenterButton/>

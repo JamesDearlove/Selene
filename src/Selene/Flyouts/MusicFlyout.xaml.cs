@@ -10,23 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Selene.Components
+namespace Selene.Flyouts
 {
     /// <summary>
-    /// Interaction logic for Icon.xaml
+    /// Interaction logic for MusicFlyout.xaml
     /// </summary>
-    public partial class WinIcon : UserControl
+    public partial class MusicFlyout : Window
     {
-        public int Size { get; set; }
-        public string Glyph { get; set; }
-
-        public WinIcon()
+        public MusicFlyout()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }
