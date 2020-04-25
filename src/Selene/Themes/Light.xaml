@@ -4,6 +4,7 @@
 
     <SolidColorBrush x:Key="BackgroundColor" Color="#E5FFFFFF"/>
     <SolidColorBrush x:Key="TextColor" Color="Black"/>
+    <SolidColorBrush x:Key="DisabledTextColor" Color="DarkGray"/>
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/Themes/BaseStyle.xaml"/>

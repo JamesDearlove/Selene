@@ -24,6 +24,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{DynamicResource AccentColor}"/>
             </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Foreground" Value="{DynamicResource DisabledTextColor}"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
     <Style x:Key="ComponentSymbolButton" BasedOn="{StaticResource ComponentButtonBase}" TargetType="{x:Type Button}">
