@@ -35,7 +35,6 @@ namespace Selene.Components
             InitializeComponent();
 
             SetupNowPlaying();
-            Flyout = new MusicFlyout();
         }
 
         public async void UpdateMediaProperties(GlobalSystemMediaTransportControlsSession session, MediaPropertiesChangedEventArgs args)
@@ -128,6 +127,7 @@ namespace Selene.Components
             }
 
             SMTC.CurrentSessionChanged += SMTC_CurrentSessionChanged;
+            Flyout = new MusicFlyout(SMTC);
         }
 
         private async void SMTC_CurrentSessionChanged(GlobalSystemMediaTransportControlsSessionManager smtc, CurrentSessionChangedEventArgs args)
@@ -154,17 +154,17 @@ namespace Selene.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //SMTC_CurrentSessionChanged(SMTC, null);
             if (Flyout.Visibility == Visibility.Hidden)
             {
                 var screenLoc = this.PointToScreen(new Point(0d, 0d));
 
-                Flyout.Left = screenLoc.X;
+                var widthDif = this.ActualWidth - Flyout.Width;
+
                 Flyout.Top = screenLoc.Y;
+
+                Flyout.Left = screenLoc.X + widthDif / 2;
+
                 Flyout.Show();
-            } else
-            {
-                Flyout.HideFlyout();
             } 
         }
     }

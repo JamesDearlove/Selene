@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:glyph="clr-namespace:Selene.Glyphs"
         xmlns:local="clr-namespace:Selene.Flyouts"
-        Height="130"
-        Width="200"
+        Height="90"
+        Width="350"
         mc:Ignorable="d"
         Background="#00000000"
         AllowsTransparency="True"
@@ -17,19 +17,57 @@
     <Window.Resources>
         <Storyboard x:Key="ShowAnimation">
             <DoubleAnimation Storyboard.TargetName="MainGrid" Storyboard.TargetProperty="Opacity" From="0.0" To="1.0" Duration="0:0:0.3"/>
-            <!--<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MainGrid">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="MainGrid">
                 <EasingDoubleKeyFrame KeyTime="0" Value="-30"/>
                 <EasingDoubleKeyFrame KeyTime="0:0:0.3" Value="0">
                     <EasingDoubleKeyFrame.EasingFunction>
                         <CircleEase EasingMode="EaseOut"/>
                     </EasingDoubleKeyFrame.EasingFunction>
                 </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>-->
+            </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Storyboard x:Key="HideAnimation">
             <DoubleAnimation Storyboard.TargetName="MainGrid" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.2"/>
         </Storyboard>
+        <Storyboard x:Key="NextSongDisappear">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-30">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseIn"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="NextSongAppear">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+            <BeginStoryboard x:Name="NextSongDisappear_BeginStoryboard" Storyboard="{StaticResource NextSongDisappear}"/>
+            <BeginStoryboard Storyboard="{StaticResource NextSongAppear}"/>
+        </EventTrigger>
+    </Window.Triggers>
 
     <Grid x:Name="MainGrid" Margin="0,30,0,0">
         <Grid.RenderTransform>
@@ -41,9 +79,39 @@
             </TransformGroup>
         </Grid.RenderTransform>
         <StackPanel x:Name="Sessions">
-            <TextBlock>God Put a Smile upon Your Face</TextBlock>
-            <TextBlock>ColdPlay</TextBlock>
-            <Button Style="{DynamicResource ComponentSymbolStyle}">&#xE790;</Button>
+            <Grid Height="60">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Margin="5" x:Name="AlbumArtImage"/>
+
+                <Grid x:Name="grid" Margin="10,0" Grid.Column="1" VerticalAlignment="Center">
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Grid.RenderTransform>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0" x:Name="SongTitleText" FontSize="14" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semibold">God Put a Smile upon Your Face</TextBlock>
+                    <TextBlock Grid.Row="1" x:Name="SongArtistText" FontSize="12">Coldplay</TextBlock>
+                </Grid>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button x:Name="PreviousButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PreviousButtonClick" >&#xE892;</Button>
+                    <Button x:Name="PlayPauseButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PlayPauseClick">&#xE768;</Button>
+                    <Button x:Name="NextButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="NextButtonClick">&#xE893;</Button>
+                </StackPanel>
+            </Grid>
         </StackPanel>
     </Grid>
 </Window>
