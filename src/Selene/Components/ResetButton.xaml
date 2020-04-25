@@ -6,7 +6,5 @@
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="40">
-    <Button Style="{DynamicResource ComponentButtonStyle}" Width="40" ToolTip="Reset Selene" Click="Button_Click">
-        <TextBlock Style="{DynamicResource MDL2Asset}">&#xE72C;</TextBlock>
-    </Button>
+    <Button Style="{DynamicResource ComponentSymbolButton}" Width="40" ToolTip="Reset Selene" Click="Button_Click">&#xE72C;</Button>
 </UserControl>

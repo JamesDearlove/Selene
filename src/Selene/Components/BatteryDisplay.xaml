@@ -6,9 +6,9 @@
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="400">
-    <Button Style="{DynamicResource ComponentButtonStyle}">
+    <Button Style="{DynamicResource ComponentButton}">
         <StackPanel>
-            <TextBlock x:Name="BatteryIcon" Style="{DynamicResource MDL2Asset}"/>
+            <TextBlock x:Name="BatteryIcon" Style="{DynamicResource MDL2Symbol}"/>
             <Separator/>
             <TextBlock x:Name="BatteryLevelText"/>
         </StackPanel>

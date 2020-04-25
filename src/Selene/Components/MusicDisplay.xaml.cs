@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Selene.Flyouts;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -26,12 +27,15 @@ namespace Selene.Components
         private GlobalSystemMediaTransportControlsSessionManager SMTC;
 
         private GlobalSystemMediaTransportControlsSession CurrentSession;
-        
+
+        private MusicFlyout Flyout;
+
         public MusicDisplay()
         {
             InitializeComponent();
 
             SetupNowPlaying();
+            Flyout = new MusicFlyout();
         }
 
         public async void UpdateMediaProperties(GlobalSystemMediaTransportControlsSession session, MediaPropertiesChangedEventArgs args)
@@ -115,6 +119,7 @@ namespace Selene.Components
             if (CurrentSession != null)
             {
                 UpdateSessionInfo(CurrentSession);
+                CurrentSession.MediaPropertiesChanged += UpdateMediaProperties;
                 MainButton.Visibility = Visibility.Visible;
             }
             else
@@ -149,7 +154,18 @@ namespace Selene.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            SMTC_CurrentSessionChanged(SMTC, null);
+            //SMTC_CurrentSessionChanged(SMTC, null);
+            if (Flyout.Visibility == Visibility.Hidden)
+            {
+                var screenLoc = this.PointToScreen(new Point(0d, 0d));
+
+                Flyout.Left = screenLoc.X;
+                Flyout.Top = screenLoc.Y;
+                Flyout.Show();
+            } else
+            {
+                Flyout.HideFlyout();
+            } 
         }
     }
 }

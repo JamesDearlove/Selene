@@ -27,8 +27,9 @@ namespace Selene.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var myWindow = Window.GetWindow(this);
-            myWindow.Close();
+            //var myWindow = Window.GetWindow(this);
+            //myWindow.Close();
+            Application.Current.Shutdown();
         }
     }
 }

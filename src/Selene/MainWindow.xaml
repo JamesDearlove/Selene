@@ -23,9 +23,7 @@
             <c:MusicDisplay/>
         </StackPanel>
         <StackPanel x:Name="RightPanel" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Style="{DynamicResource ComponentButtonStyle}" Click="Button_Click_1">
-                <TextBlock Style="{DynamicResource MDL2Asset}">&#xE790;</TextBlock>
-            </Button>
+            <Button Style="{DynamicResource ComponentSymbolButton}" Click="Button_Click_1">&#xE790;</Button>
             <c:ResetButton/>
             <!--<c:SysTrayOverflowButton/>-->
             <c:BatteryDisplay/>
