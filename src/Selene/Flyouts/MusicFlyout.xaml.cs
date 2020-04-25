@@ -42,124 +42,55 @@ namespace Selene.Flyouts
         {
             currentSession = SMTC.GetCurrentSession();
             
-            SMTC.CurrentSessionChanged += SMTC_CurrentSessionChanged;
-            SMTC_CurrentSessionChanged(SMTC, null);
+            //SMTC.CurrentSessionChanged += SMTC_CurrentSessionChanged;
+            //SMTC_CurrentSessionChanged(SMTC, null);
+            SMTC.SessionsChanged += SMTC_SessionsChanged;
+            SMTC_SessionsChanged(SMTC, null);
         }
 
-        public void UpdatePlaybackProperties()
+        private async void SMTC_SessionsChanged(GlobalSystemMediaTransportControlsSessionManager sender, SessionsChangedEventArgs args)
         {
-            try
+            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
             {
-                var playbackInfo = currentSession.GetPlaybackInfo();
+                var sessions = SMTC.GetSessions();
 
-                if (playbackInfo != null)
+                foreach (MusicSessionControl ses in SessionStackPanel.Children)
                 {
-                    PreviousButton.IsEnabled = playbackInfo.Controls.IsPreviousEnabled;
-                    NextButton.IsEnabled = playbackInfo.Controls.IsNextEnabled;
-
-                    if (playbackInfo.PlaybackStatus == GlobalSystemMediaTransportControlsSessionPlaybackStatus.Playing)
-                    {
-                        PlayPauseButton.Content = "\uE769";
-                    }
-                    else if (playbackInfo.PlaybackStatus == GlobalSystemMediaTransportControlsSessionPlaybackStatus.Paused)
-                    {
-                        PlayPauseButton.Content = "\uE768";
-                    }
+                    ses.ClearSession();
                 }
-            }
-            catch (Exception) { }
-        }
+                SessionStackPanel.Children.Clear();
 
-        public async void UpdateMediaProperties()
-        {
-            try
-            {
-                var mediaInfo = await currentSession.TryGetMediaPropertiesAsync();
-
-                Storyboard sbOut = this.FindResource("NextSongDisappear") as Storyboard;
-                EventHandler onComplete = null;
-                onComplete = (s, e) =>
+                foreach (var session in sessions)
                 {
-                    sbOut.Completed -= onComplete;
-                    SongTitleText.Text = mediaInfo.Title;
-                    SongArtistText.Text = mediaInfo.Artist;
-                    Storyboard sbIn = this.FindResource("NextSongAppear") as Storyboard;
-                    sbIn.Begin();
-                };
-                sbOut.Completed += onComplete;
-                sbOut.Begin();
-                await UpdateThumbnail(mediaInfo.Thumbnail);
-            }
-            catch (Exception) { }
-        }
-
-        private async Task UpdateThumbnail(IRandomAccessStreamReference thumbnail)
-        {
-            if (thumbnail != null)
-            {
-                using (var stream = await thumbnail.OpenReadAsync())
-                {
-                    if (stream != null)
-                    {
-                        using (var nstream = stream.AsStream())
-                        {
-                            if (nstream != null && nstream.Length > 0)
-                            {
-                                AlbumArtImage.Source = BitmapFrame.Create(nstream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
-                                AlbumArtImage.Visibility = Visibility.Visible;
-                            }
-                            else
-                            {
-                                AlbumArtImage.Visibility = Visibility.Hidden;
-                                AlbumArtImage.Source = null;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        AlbumArtImage.Visibility = Visibility.Hidden;
-                        AlbumArtImage.Source = null;
-                    }
+                    var newControl = new MusicSessionControl(session);
+                    SessionStackPanel.Children.Add(newControl);
                 }
-            }
+
+                this.Height = 30 + sessions.Count * 60;
+            }));
         }
 
         private async void SMTC_CurrentSessionChanged(GlobalSystemMediaTransportControlsSessionManager sender, CurrentSessionChangedEventArgs args)
         {
             await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
             {
-                if (currentSession != null)
-                {
-                    currentSession.MediaPropertiesChanged -= CurrentSession_MediaPropertiesChanged;
-                    currentSession.PlaybackInfoChanged -= CurrentSession_PlaybackInfoChanged;
-                }
-                currentSession = sender.GetCurrentSession();
-                if (currentSession != null)
-                {
-                    currentSession.MediaPropertiesChanged += CurrentSession_MediaPropertiesChanged;
-                    currentSession.PlaybackInfoChanged += CurrentSession_PlaybackInfoChanged;
-                }
-                UpdateMediaProperties();
-                UpdatePlaybackProperties();
+                //if (currentSession != null)
+                //{
+                //    currentSession.MediaPropertiesChanged -= CurrentSession_MediaPropertiesChanged;
+                //    currentSession.PlaybackInfoChanged -= CurrentSession_PlaybackInfoChanged;
+                //}
+                //currentSession = sender.GetCurrentSession();
+                //if (currentSession != null)
+                //{
+                //    currentSession.MediaPropertiesChanged += CurrentSession_MediaPropertiesChanged;
+                //    currentSession.PlaybackInfoChanged += CurrentSession_PlaybackInfoChanged;
+                //}
+                //UpdateMediaProperties();
+                //UpdatePlaybackProperties();
             }));
         }
 
-        private async void CurrentSession_PlaybackInfoChanged(GlobalSystemMediaTransportControlsSession sender, PlaybackInfoChangedEventArgs args)
-        {
-            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
-            {
-                UpdatePlaybackProperties();
-            }));
-        }
-
-        private async void CurrentSession_MediaPropertiesChanged(GlobalSystemMediaTransportControlsSession sender, MediaPropertiesChangedEventArgs args)
-        {
-            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
-            {
-                UpdateMediaProperties();
-            }));
-        }
-
+        
         public void HideFlyout()
         {
             Storyboard sb = this.FindResource("HideAnimation") as Storyboard;
@@ -195,31 +126,6 @@ namespace Selene.Flyouts
             HideFlyout();
         }
 
-        private async void PreviousButtonClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await currentSession.TrySkipPreviousAsync();
-            }
-            catch (Exception) { }
-        }
-
-        private async void PlayPauseClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await currentSession.TryTogglePlayPauseAsync();
-            }
-            catch (Exception) { }
-        }
-
-        private async void NextButtonClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                await currentSession.TrySkipNextAsync();
-            }
-            catch (Exception) { }
-        }
+        
     }
 }

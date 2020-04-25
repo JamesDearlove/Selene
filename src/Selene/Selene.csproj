@@ -122,6 +122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Flyouts\MusicSessionControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +161,9 @@
     <Compile Include="Classes\Glyphs.cs" />
     <Compile Include="Flyouts\MusicFlyout.xaml.cs">
       <DependentUpon>MusicFlyout.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Flyouts\MusicSessionControl.xaml.cs">
+      <DependentUpon>MusicSessionControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

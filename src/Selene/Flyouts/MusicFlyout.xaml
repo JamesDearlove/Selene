@@ -29,45 +29,8 @@
         <Storyboard x:Key="HideAnimation">
             <DoubleAnimation Storyboard.TargetName="MainGrid" Storyboard.TargetProperty="Opacity" From="1.0" To="0.0" Duration="0:0:0.2"/>
         </Storyboard>
-        <Storyboard x:Key="NextSongDisappear">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <CubicEase EasingMode="EaseIn"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="-30">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <CubicEase EasingMode="EaseIn"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="1"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
-        <Storyboard x:Key="NextSongAppear">
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="grid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="0">
-                    <EasingDoubleKeyFrame.EasingFunction>
-                        <CubicEase EasingMode="EaseOut"/>
-                    </EasingDoubleKeyFrame.EasingFunction>
-                </EasingDoubleKeyFrame>
-            </DoubleAnimationUsingKeyFrames>
-            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="grid">
-                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-                <EasingDoubleKeyFrame KeyTime="0:0:0.2" Value="1"/>
-            </DoubleAnimationUsingKeyFrames>
-        </Storyboard>
+
     </Window.Resources>
-    <Window.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard x:Name="NextSongDisappear_BeginStoryboard" Storyboard="{StaticResource NextSongDisappear}"/>
-            <BeginStoryboard Storyboard="{StaticResource NextSongAppear}"/>
-        </EventTrigger>
-    </Window.Triggers>
 
     <Grid x:Name="MainGrid" Margin="0,30,0,0">
         <Grid.RenderTransform>
@@ -78,8 +41,8 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <StackPanel x:Name="Sessions">
-            <Grid Height="60">
+        <StackPanel x:Name="SessionStackPanel">
+            <!--<Grid Height="60">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition/>
@@ -111,7 +74,7 @@
                     <Button x:Name="PlayPauseButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PlayPauseClick">&#xE768;</Button>
                     <Button x:Name="NextButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="NextButtonClick">&#xE893;</Button>
                 </StackPanel>
-            </Grid>
+            </Grid>-->
         </StackPanel>
     </Grid>
 </Window>

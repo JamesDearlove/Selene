@@ -29,10 +29,10 @@
 * [X] Display Music
   * [X] Basic Display
   * [X] Automatic change to current playing
-* [ ] Music flyout
-  * [ ] Play/Pause
-  * [ ] Skip
-  * [ ] Thumbnail
+* [X] Music flyout
+  * [X] Play/Pause
+  * [X] Skip
+  * [X] Thumbnail
 
 ## Apps Display
 
