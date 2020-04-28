@@ -50,10 +50,15 @@
   <Target Name="EnsureWixToolsetInstalled" Condition=" '$(WixTargetsImported)' != 'true' ">
     <Error Text="The WiX Toolset v3.11 (or newer) build tools must be installed to build this project. To download the WiX Toolset, see http://wixtoolset.org/releases/" />
   </Target>
-	<!--<Target Name="BeforeBuild">
-    <Delete Files="$(TargetDir)\*.msi" />
+	<Target Name="BeforeBuild">
+    <GetAssemblyIdentity AssemblyFiles="..\Selene\bin\$(Configuration)\Selene.exe">
+      <Output TaskParameter="Assemblies" ItemName="AssemblyVersion" />
+    </GetAssemblyIdentity>
+    <PropertyGroup>
+      <DefineConstants>BuildVersion=%(AssemblyVersion.Version)</DefineConstants>
+    </PropertyGroup>
   </Target>
-	<Target Name="AfterBuild">
+	<!--<Target Name="AfterBuild">
     <GetAssemblyIdentity AssemblyFiles="$(SolutionDir)\Selene\bin\$(Configuration)\Selene.exe">
       <Output TaskParameter="Assemblies" ItemName="AssemblyVersion"/>
     </GetAssemblyIdentity>

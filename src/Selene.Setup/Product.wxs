@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?>
-	<Product Id="*" Name="Selene" Language="1033" Version="0.1.0.0" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
+	<Product Id="*" Name="Selene" Language="1033" Version="$(var.BuildVersion)" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove" />
 
     <UI>
@@ -18,7 +18,7 @@
     <Property Id="WixShellExecTarget" Value="[#Selene.exe]" />
     <CustomAction Id="LaunchApplication" BinaryKey="WixCA" DllEntry="WixShellExec" Impersonate="yes" />
     
-    <MajorUpgrade AllowSameVersionUpgrades="no" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MajorUpgrade AllowSameVersionUpgrades="yes" DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
 		<MediaTemplate EmbedCab="yes" />
 
 		<Feature Id="ProductFeature" Title="Selene" Level="1">
