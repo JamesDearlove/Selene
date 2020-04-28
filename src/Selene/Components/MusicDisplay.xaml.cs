@@ -68,47 +68,6 @@ namespace Selene.Components
             }
         }
 
-        private async void UpdatePlaybackInfo(GlobalSystemMediaTransportControlsSession session, PlaybackInfoChangedEventArgs args)
-        {
-            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
-            {
-                if (session != null && session.GetPlaybackInfo() != null)
-                {
-                    UpdateStatusIcon(session);
-                }
-            }));
-        }
-
-        private void UpdateStatusIcon(GlobalSystemMediaTransportControlsSession session)
-        {
-            try
-            {
-                var playbackInfo = session.GetPlaybackInfo();
-                switch (playbackInfo.PlaybackStatus)
-                {
-                    case GlobalSystemMediaTransportControlsSessionPlaybackStatus.Playing:
-                        MusicStatus.Text = "\uE768";
-                        break;
-                    case GlobalSystemMediaTransportControlsSessionPlaybackStatus.Paused:
-                        MusicStatus.Text = "\uE769";
-                        break;
-                    case GlobalSystemMediaTransportControlsSessionPlaybackStatus.Stopped:
-                        MusicStatus.Text = "\uE71A";
-                        break;
-                    case GlobalSystemMediaTransportControlsSessionPlaybackStatus.Changing:
-                        MusicStatus.Text = "\uE893";
-                        break;
-                    default:
-                        MusicStatus.Text = "\uEC4F";
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-        }
-
         public async void SetupNowPlaying()
         {
             SMTC = await GlobalSystemMediaTransportControlsSessionManager.RequestAsync();
@@ -152,7 +111,7 @@ namespace Selene.Components
             }));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void ShowFlyout()
         {
             if (Flyout.Visibility == Visibility.Hidden)
             {
@@ -165,7 +124,12 @@ namespace Selene.Components
                 Flyout.Left = screenLoc.X + widthDif / 2;
 
                 Flyout.Show();
-            } 
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowFlyout();
         }
     }
 }

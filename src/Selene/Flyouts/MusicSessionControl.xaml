@@ -47,16 +47,16 @@
         </EventTrigger>
     </UserControl.Triggers>
     
-    <Grid Height="60">
+    <Grid Height="60" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
             <ColumnDefinition/>
-            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="130"/>
         </Grid.ColumnDefinitions>
 
         <Image Margin="5" x:Name="AlbumArtImage"/>
 
-        <Grid x:Name="grid" Margin="10,0" Grid.Column="1" VerticalAlignment="Center">
+        <Grid x:Name="grid" Margin="10,0" Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -74,7 +74,7 @@
             <TextBlock Grid.Row="1" x:Name="SongArtistText" FontSize="12">Coldplay</TextBlock>
         </Grid>
 
-        <StackPanel Grid.Column="2" Orientation="Horizontal">
+        <StackPanel Margin="5,0" Grid.Column="2" Orientation="Horizontal">
             <Button x:Name="PreviousButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PreviousButtonClick" >&#xE892;</Button>
             <Button x:Name="PlayPauseButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PlayPauseClick">&#xE768;</Button>
             <Button x:Name="NextButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="NextButtonClick">&#xE893;</Button>

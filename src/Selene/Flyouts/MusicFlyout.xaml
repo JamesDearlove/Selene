@@ -6,7 +6,7 @@
         xmlns:glyph="clr-namespace:Selene.Glyphs"
         xmlns:local="clr-namespace:Selene.Flyouts"
         Height="90"
-        Width="350"
+        Width="360"
         mc:Ignorable="d"
         Background="#00000000"
         AllowsTransparency="True"
@@ -41,40 +41,6 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <StackPanel x:Name="SessionStackPanel">
-            <!--<Grid Height="60">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="120"/>
-                </Grid.ColumnDefinitions>
-
-                <Image Margin="5" x:Name="AlbumArtImage"/>
-
-                <Grid x:Name="grid" Margin="10,0" Grid.Column="1" VerticalAlignment="Center">
-                    <Grid.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <TranslateTransform/>
-                        </TransformGroup>
-                    </Grid.RenderTransform>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Grid.Row="0" x:Name="SongTitleText" FontSize="14" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semibold">God Put a Smile upon Your Face</TextBlock>
-                    <TextBlock Grid.Row="1" x:Name="SongArtistText" FontSize="12">Coldplay</TextBlock>
-                </Grid>
-
-                <StackPanel Grid.Column="2" Orientation="Horizontal">
-                    <Button x:Name="PreviousButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PreviousButtonClick" >&#xE892;</Button>
-                    <Button x:Name="PlayPauseButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="PlayPauseClick">&#xE768;</Button>
-                    <Button x:Name="NextButton" Width="40" Height="40" Style="{DynamicResource ComponentSymbolButton}" Click="NextButtonClick">&#xE893;</Button>
-                </StackPanel>
-            </Grid>-->
-        </StackPanel>
+        <StackPanel x:Name="SessionStackPanel"/>
     </Grid>
 </Window>

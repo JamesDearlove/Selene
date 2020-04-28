@@ -27,8 +27,6 @@ namespace Selene.Flyouts
     {
         GlobalSystemMediaTransportControlsSessionManager SMTC;
 
-        GlobalSystemMediaTransportControlsSession currentSession;
-
         public MusicFlyout(GlobalSystemMediaTransportControlsSessionManager smtc)
         {
             InitializeComponent();
@@ -40,10 +38,6 @@ namespace Selene.Flyouts
 
         public void Setup()
         {
-            currentSession = SMTC.GetCurrentSession();
-            
-            //SMTC.CurrentSessionChanged += SMTC_CurrentSessionChanged;
-            //SMTC_CurrentSessionChanged(SMTC, null);
             SMTC.SessionsChanged += SMTC_SessionsChanged;
             SMTC_SessionsChanged(SMTC, null);
         }
@@ -69,39 +63,12 @@ namespace Selene.Flyouts
                 this.Height = 30 + sessions.Count * 60;
             }));
         }
-
-        private async void SMTC_CurrentSessionChanged(GlobalSystemMediaTransportControlsSessionManager sender, CurrentSessionChangedEventArgs args)
-        {
-            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
-            {
-                //if (currentSession != null)
-                //{
-                //    currentSession.MediaPropertiesChanged -= CurrentSession_MediaPropertiesChanged;
-                //    currentSession.PlaybackInfoChanged -= CurrentSession_PlaybackInfoChanged;
-                //}
-                //currentSession = sender.GetCurrentSession();
-                //if (currentSession != null)
-                //{
-                //    currentSession.MediaPropertiesChanged += CurrentSession_MediaPropertiesChanged;
-                //    currentSession.PlaybackInfoChanged += CurrentSession_PlaybackInfoChanged;
-                //}
-                //UpdateMediaProperties();
-                //UpdatePlaybackProperties();
-            }));
-        }
-
         
         public void HideFlyout()
         {
             Storyboard sb = this.FindResource("HideAnimation") as Storyboard;
             sb.Begin();
-            sb.Completed += Sb_Completed;
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
+            sb.Completed += HideAnimationComplete;
         }
 
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -114,7 +81,8 @@ namespace Selene.Flyouts
             }
         }
 
-        private void Sb_Completed(object sender, EventArgs e)
+        private void HideAnimationComplete(object sender, EventArgs e)
+
         {
             this.Hide();
             this.Topmost = false;
@@ -126,6 +94,10 @@ namespace Selene.Flyouts
             HideFlyout();
         }
 
-        
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
     }
 }
