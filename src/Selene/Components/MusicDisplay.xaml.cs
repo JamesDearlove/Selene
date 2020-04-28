@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -115,13 +116,15 @@ namespace Selene.Components
         {
             if (Flyout.Visibility == Visibility.Hidden)
             {
-                var screenLoc = this.PointToScreen(new Point(0d, 0d));
+                // Grab DPI scale beacuse PointToScreen doesn't use that for some reason.
+                var dpiX = (int)typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null);
+                var dpiXScale = dpiX / 96;
 
+                var screenLoc = this.PointToScreen(new Point(0d, 0d));
                 var widthDif = this.ActualWidth - Flyout.Width;
 
                 Flyout.Top = screenLoc.Y;
-
-                Flyout.Left = screenLoc.X + widthDif / 2;
+                Flyout.Left = screenLoc.X / dpiXScale + widthDif / 2 ;
 
                 Flyout.Show();
             }
