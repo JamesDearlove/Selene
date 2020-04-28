@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Selene.Flyouts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,9 +22,36 @@ namespace Selene.Components
     /// </summary>
     public partial class LauncherButton : UserControl
     {
+        LauncherFlyout Flyout;
+
         public LauncherButton()
         {
             InitializeComponent();
+
+            Flyout = new LauncherFlyout();
+        }
+
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            ShowFlyout();
+        }
+
+        private void ShowFlyout()
+        {
+            if (Flyout.Visibility == Visibility.Hidden)
+            {
+                // Grab DPI scale beacuse PointToScreen doesn't use that for some reason.
+                var dpiX = (int)typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null);
+                var dpiXScale = dpiX / 96;
+
+                var screenLoc = this.PointToScreen(new Point(0d, 0d));
+
+                Flyout.Top = screenLoc.Y;
+                Flyout.Left = screenLoc.X / dpiXScale;
+
+                Flyout.Show();
+            }
         }
     }
 }

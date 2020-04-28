@@ -1,13 +1,12 @@
-﻿<Window x:Class="Selene.Flyouts.MusicFlyout"
+﻿<Window x:Class="Selene.Flyouts.LauncherFlyout"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:glyph="clr-namespace:Selene.Glyphs"
         xmlns:local="clr-namespace:Selene.Flyouts"
         mc:Ignorable="d"
-        Height="90"
-        Width="360"
+        Height="70"
+        Width="120"
         Background="#00000000"
         AllowsTransparency="True"
         WindowStyle="None" 
@@ -41,6 +40,14 @@
                 <TranslateTransform/>
             </TransformGroup>
         </Grid.RenderTransform>
-        <StackPanel x:Name="SessionStackPanel"/>
+        <StackPanel>
+            <Button Click="SettingsButton_Click" Height="40" Style="{DynamicResource ComponentButtonBase}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Margin="0,0,10,0" Style="{DynamicResource MDL2Symbol}">&#xE713;</TextBlock>
+                    <Separator/>
+                    <TextBlock FontSize="16">Settings</TextBlock>
+                </StackPanel>
+            </Button>
+        </StackPanel>
     </Grid>
 </Window>

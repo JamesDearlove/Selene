@@ -1,0 +1,52 @@
+﻿<Window x:Class="Selene.Windows.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Selene.Windows"
+        mc:Ignorable="d"
+        Background="#00000000"
+        AllowsTransparency="True"
+        Title="Selene Settings" 
+        Height="450" 
+        Width="577" 
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="Black" Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="40"/>
+            </Grid.ColumnDefinitions>
+            <Border x:Name="DragBar" MouseLeftButtonDown="DragBar_MouseLeftButtonDown">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" FontSize="18" FontFamily="Segoe UI Semibold">Selene Settings</TextBlock>
+                </Grid>
+            </Border>
+            <Button x:Name="CloseButton" Grid.Column="1" Style="{DynamicResource ComponentSymbolButton}" Click="CloseButton_Click" FontSize="14">&#xE8BB;</Button>
+        </Grid>
+
+        <StackPanel Margin="10" Grid.Row="1">
+            <CheckBox x:Name="StartupCheckbox" Background="White" Content="Start at Startup" Foreground="White" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+        </StackPanel>
+
+        <Grid Margin="10,0,0,0" Grid.Row="2" Background="Transparent">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock>Selene</TextBlock>
+                <TextBlock Margin="5,0">-</TextBlock>
+                <TextBlock x:Name="VersionText" >Version 1.0</TextBlock>
+                <TextBlock Margin="5,0">-</TextBlock>
+            <TextBlock x:Name="GithubText" Style="{DynamicResource HoverUnderlineStyle}" MouseUp="GithubText_MouseUp">Github</TextBlock>
+            </StackPanel>
+            
+        </Grid>
+        
+        
+    </Grid>
+</Window>

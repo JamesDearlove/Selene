@@ -117,14 +117,13 @@ namespace Selene.Components
             if (Flyout.Visibility == Visibility.Hidden)
             {
                 // Grab DPI scale beacuse PointToScreen doesn't use that for some reason.
-                var dpiX = (int)typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null);
-                var dpiXScale = dpiX / 96;
+                double factor = PresentationSource.FromVisual(this).CompositionTarget.TransformToDevice.M11;
 
                 var screenLoc = this.PointToScreen(new Point(0d, 0d));
                 var widthDif = this.ActualWidth - Flyout.Width;
 
                 Flyout.Top = screenLoc.Y;
-                Flyout.Left = screenLoc.X / dpiXScale + widthDif / 2 ;
+                Flyout.Left = screenLoc.X / factor + widthDif / 2 ;
 
                 Flyout.Show();
             }
