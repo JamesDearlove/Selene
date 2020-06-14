@@ -62,8 +62,11 @@ namespace Selene.Windows
             var appLocation = Assembly.GetEntryAssembly().Location;
             var appExe = Assembly.GetExecutingAssembly().GetName().Name;
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            key.SetValue(appExe, appLocation);
-            key.Close();
+            if (key == null)
+            {
+                key.SetValue(appExe, appLocation);
+                key.Close();
+            }
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
