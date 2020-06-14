@@ -28,9 +28,8 @@ namespace Selene.Components
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var mainWindow = Window.GetWindow(this);
-            AppBarFunctions.SetAppBar(mainWindow, ABEdge.None);
-            AppBarFunctions.SetAppBar(mainWindow, ABEdge.Top);
+            MainWindow mainWindow = (MainWindow)Window.GetWindow(this);
+            mainWindow.FixSize();
         }
     }
 }

@@ -15,7 +15,7 @@
         AllowsTransparency="True"
         WindowStyle="None" ShowInTaskbar="False">
 
-    <Grid>
+    <Grid x:Name="windowGrid">
         <StackPanel x:Name="LeftPanel" Orientation="Horizontal" HorizontalAlignment="Left">
             <c:LauncherButton/>
         </StackPanel>
