@@ -12,7 +12,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary x:Name="ThemeDictionary">
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="/Themes/Dark.xaml"/>
+                        <ResourceDictionary Source="/Themes/Transparent.xaml"/>
+                        <ResourceDictionary Source="/Themes/BaseStyle.xaml"/>
                     </ResourceDictionary.MergedDictionaries>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

@@ -12,7 +12,7 @@
         Width="577" 
         WindowStartupLocation="CenterScreen" 
         WindowStyle="None">
-    <Grid>
+    <Grid Background="{DynamicResource FlyoutColor}">
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition/>

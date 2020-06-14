@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Selene.Themes">
 
-    <SolidColorBrush x:Key="BackgroundColor" Color="#E5000000"/>
-    <SolidColorBrush x:Key="FlyoutColor" Color="#E5000000"/>
+    <SolidColorBrush x:Key="BackgroundColor" Color="#01FFFFFF"/>
+    <SolidColorBrush x:Key="FlyoutColor" Color="#DE000000"/>
     <SolidColorBrush x:Key="TextColor" Color="White"/>
     <SolidColorBrush x:Key="DisabledTextColor" Color="DarkGray"/>
 </ResourceDictionary>

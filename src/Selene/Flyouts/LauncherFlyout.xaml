@@ -31,7 +31,7 @@
 
     </Window.Resources>
 
-    <Grid x:Name="MainGrid" Margin="0,30,0,0">
+    <Grid x:Name="MainGrid" Margin="0,30,0,0" Background="{DynamicResource FlyoutColor}">
         <Grid.RenderTransform>
             <TransformGroup>
                 <ScaleTransform/>
