@@ -49,7 +49,7 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/bin/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+    contents: '**Selene/bin/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
     flattenFolders: true
