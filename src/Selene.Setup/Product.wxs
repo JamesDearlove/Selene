@@ -69,7 +69,7 @@
       <File Id="NetCoreEx.BinaryExtensions.dll" Name="NetCoreEx.BinaryExtensions.dll" Source="$(var.Selene_TargetDir)NetCoreEx.BinaryExtensions.dll" />
     </Component>
     <Component Id="Selene.Controls.dll" Guid="17271fc6-f4ad-422a-95f8-ef5732c170bc">
-      <File Id="Selene.Controls.dll" Name="Selene.Controls.dll" Source="$(var.Selene.Controls_TargetDir)Selene.Controls.dll" />
+      <File Id="Selene.Controls.dll" Name="Selene.Controls.dll" Source="$(var.Selene_TargetDir)Selene.Controls.dll" />
     </Component>
      
       
