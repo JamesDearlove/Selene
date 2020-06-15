@@ -122,7 +122,7 @@ namespace Selene.Components
                 var screenLoc = this.PointToScreen(new Point(0d, 0d));
                 var widthDif = this.ActualWidth - Flyout.Width;
 
-                Flyout.Top = screenLoc.Y;
+                Flyout.Top = screenLoc.Y + 30;
                 Flyout.Left = screenLoc.X / factor + widthDif / 2 ;
 
                 Flyout.Show();

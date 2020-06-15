@@ -86,6 +86,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Flyouts\ClockFlyout.xaml.cs">
+      <DependentUpon>ClockFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Components\TimeDisplay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Flyouts\ClockFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,6 +255,10 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Selene.Controls\Selene.Controls.csproj">
+      <Project>{d021745a-69e4-4ee7-84d3-70761665a708}</Project>
+      <Name>Selene.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WpfAppBar\WpfAppBar.csproj">
       <Project>{902b86f1-7186-489a-a77e-897230ed7fbd}</Project>
       <Name>WpfAppBar</Name>

@@ -48,5 +48,13 @@ namespace Selene.Components
         {
             TimeTimer.Dispose();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var Flyout = new Selene.Flyouts.ClockFlyout();
+            //Flyout.Top = 500;
+            //Flyout.Left = 500;
+            Flyout.Show();
+        }
     }
 }
