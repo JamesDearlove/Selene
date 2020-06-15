@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?><?define Selene.Controls_TargetDir=$(var.Selene.Controls.TargetDir)?>
 	<Product Id="*" Name="Selene" Language="1033" Version="$(var.BuildVersion)" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove" />
 
@@ -67,6 +67,9 @@
     </Component>
     <Component Id="NetCoreEx.BinaryExtensions.dll" Guid="967fa460-80f7-4084-b0d8-c438bf46cf4e">
       <File Id="NetCoreEx.BinaryExtensions.dll" Name="NetCoreEx.BinaryExtensions.dll" Source="$(var.Selene_TargetDir)NetCoreEx.BinaryExtensions.dll" />
+    </Component>
+    <Component Id="Selene.Controls.dll" Guid="17271fc6-f4ad-422a-95f8-ef5732c170bc">
+      <File Id="Selene.Controls.dll" Name="Selene.Controls.dll" Source="$(var.Selene.Controls_TargetDir)Selene.Controls.dll" />
     </Component>
      
       
