@@ -31,7 +31,6 @@ namespace Selene.Components
             Flyout = new LauncherFlyout();
         }
 
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             ShowFlyout();
@@ -39,18 +38,9 @@ namespace Selene.Components
 
         private void ShowFlyout()
         {
-            if (Flyout.Visibility == Visibility.Hidden)
+            if (!Flyout.IsVisible)
             {
-                // Grab DPI scale beacuse PointToScreen doesn't use that for some reason.
-                var dpiX = (int)typeof(SystemParameters).GetProperty("DpiX", BindingFlags.NonPublic | BindingFlags.Static).GetValue(null, null);
-                var dpiXScale = dpiX / 96;
-
-                var screenLoc = this.PointToScreen(new Point(0d, 0d));
-
-                Flyout.Top = screenLoc.Y;
-                Flyout.Left = screenLoc.X / dpiXScale;
-
-                Flyout.Show();
+                Flyout.Show(this);
             }
         }
     }
