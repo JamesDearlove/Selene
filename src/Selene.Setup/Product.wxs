@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?><?define Selene.Controls_TargetDir=$(var.Selene.Controls.TargetDir)?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define Selene_TargetDir=$(var.Selene.TargetDir)?>
 	<Product Id="*" Name="Selene" Language="1033" Version="$(var.BuildVersion)" Manufacturer="James Dearlove" UpgradeCode="40106767-e183-4697-b21e-58d27a57b3f7">
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Manufacturer="James Dearlove" />
 
