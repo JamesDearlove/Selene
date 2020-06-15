@@ -1,5 +1,4 @@
-﻿using Selene.Properties;
-using Selene.Windows;
+﻿using Selene.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,27 +10,19 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Selene.Controls;
 
 namespace Selene.Flyouts
 {
     /// <summary>
-    /// Interaction logic for LauncherFlyout.xaml
+    /// Interaction logic for ClockFlyout.xaml
     /// </summary>
-    public partial class LauncherFlyout : FlyoutWindow
+    public partial class ClockFlyout : FlyoutWindow
     {
-        public LauncherFlyout()
+        public ClockFlyout()
         {
             InitializeComponent();
-        }
-
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Show();
         }
     }
 }

@@ -17,13 +17,14 @@ using System.Windows.Threading;
 using Windows.Storage.Streams;
 using System.IO;
 using Selene.Glyphs;
+using Selene.Controls;
 
 namespace Selene.Flyouts
 {
     /// <summary>
     /// Interaction logic for MusicFlyout.xaml
     /// </summary>
-    public partial class MusicFlyout : Window
+    public partial class MusicFlyout : FlyoutWindow
     {
         GlobalSystemMediaTransportControlsSessionManager SMTC;
 
@@ -31,7 +32,6 @@ namespace Selene.Flyouts
         {
             InitializeComponent();
 
-            this.Hide();
             SMTC = smtc;
             Setup();
         }
@@ -60,44 +60,8 @@ namespace Selene.Flyouts
                     SessionStackPanel.Children.Add(newControl);
                 }
 
-                this.Height = 30 + sessions.Count * 60;
+                this.Height = sessions.Count * 60;
             }));
-        }
-        
-        public void HideFlyout()
-        {
-            Storyboard sb = this.FindResource("HideAnimation") as Storyboard;
-            sb.Begin();
-            sb.Completed += HideAnimationComplete;
-        }
-
-        private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            if (this.Visibility == Visibility.Visible)
-            {
-                this.Activate();
-                Storyboard sb = this.FindResource("ShowAnimation") as Storyboard;
-                sb.Begin();
-            }
-        }
-
-        private void HideAnimationComplete(object sender, EventArgs e)
-
-        {
-            this.Hide();
-            this.Topmost = false;
-        }
-
-        private void Window_Deactivated(object sender, EventArgs e)
-        {
-            this.Topmost = true;
-            HideFlyout();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
         }
     }
 }
