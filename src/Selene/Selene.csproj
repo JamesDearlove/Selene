@@ -116,10 +116,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\SysTrayOverflowButton.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Components\TimeDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -165,9 +161,6 @@
     </Compile>
     <Compile Include="Components\ResetButton.xaml.cs">
       <DependentUpon>ResetButton.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Components\SysTrayOverflowButton.xaml.cs">
-      <DependentUpon>SysTrayOverflowButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\TimeDisplay.xaml.cs">
       <DependentUpon>TimeDisplay.xaml</DependentUpon>
