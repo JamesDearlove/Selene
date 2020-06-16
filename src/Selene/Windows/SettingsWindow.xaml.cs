@@ -62,7 +62,8 @@ namespace Selene.Windows
             var appLocation = Assembly.GetEntryAssembly().Location;
             var appExe = Assembly.GetExecutingAssembly().GetName().Name;
             Microsoft.Win32.RegistryKey key = Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            if (key == null)
+            var currentKey = key.GetValue(appExe);
+            if (currentKey == null)
             {
                 key.SetValue(appExe, appLocation);
                 key.Close();
