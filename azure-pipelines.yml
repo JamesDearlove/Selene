@@ -36,13 +36,27 @@ steps:
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/Selene/bin/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb|*.json)'
+    contents: '**/Selene/bin/$(BuildConfiguration)/**/net4*/?(*.exe|*.dll|*.pdb|*.json)'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
-    flattenFolders: false
+    flattenFolders: true
     
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
+    ArtifactName: '.NET Framework Build'
+    publishLocation: 'Container'
+
+- task: CopyFiles@2
+  inputs:
+    sourceFolder: '$(Build.SourcesDirectory)'
+    contents: '**/Selene/bin/$(BuildConfiguration)/**/netcore*/?(*.exe|*.dll|*.pdb|*.json)'
+    targetFolder: '$(Build.ArtifactStagingDirectory)'
+    CleanTargetFolder: true
+    flattenFolders: true
+    
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: '.NET Core Build'
     publishLocation: 'Container'
