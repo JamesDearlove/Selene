@@ -32,30 +32,17 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-    
-- task: CopyFiles@2
-  inputs:
-    sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/$(BuildConfiguration)/**/?(*.msi)'
-    targetFolder: '$(Build.ArtifactStagingDirectory)'
-    flattenFolders: true
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Installer'
-    publishLocation: 'Container'
 
 - task: CopyFiles@2
   inputs:
     sourceFolder: '$(Build.SourcesDirectory)'
-    contents: '**/Selene/bin/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb)'
+    contents: '**/Selene/bin/$(BuildConfiguration)/**/?(*.exe|*.dll|*.pdb|*.json)'
     targetFolder: '$(Build.ArtifactStagingDirectory)'
     CleanTargetFolder: true
-    flattenFolders: true
+    flattenFolders: false
     
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'Portable'
+    ArtifactName: 'drop'
     publishLocation: 'Container'
