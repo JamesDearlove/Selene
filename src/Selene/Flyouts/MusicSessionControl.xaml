@@ -40,13 +40,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
     </UserControl.Resources>
-    <UserControl.Triggers>
-        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-            <BeginStoryboard x:Name="NextSongDisappear_BeginStoryboard" Storyboard="{StaticResource NextSongDisappear}"/>
-            <BeginStoryboard Storyboard="{StaticResource NextSongAppear}"/>
-        </EventTrigger>
-    </UserControl.Triggers>
-    
+
     <Grid Height="60" Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="60"/>
@@ -56,7 +50,7 @@
 
         <Image Margin="5" x:Name="AlbumArtImage"/>
 
-        <Grid x:Name="grid" Margin="10,0" Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
+        <Grid x:Name="grid" Margin="10,0,5,0" Grid.Column="1" VerticalAlignment="Center" Background="Transparent">
             <Grid.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -70,8 +64,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Grid.Row="0" x:Name="SongTitleText" FontSize="14" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semibold">God Put a Smile upon Your Face</TextBlock>
-            <TextBlock Grid.Row="1" x:Name="SongArtistText" FontSize="12">Coldplay</TextBlock>
+            <TextBlock Grid.Row="0" x:Name="SongTitleText" FontSize="14" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis" FontFamily="Segoe UI Semibold">Song Name</TextBlock>
+            <TextBlock Grid.Row="1" x:Name="SongArtistText" FontSize="12" TextWrapping="NoWrap" TextTrimming="CharacterEllipsis">Song Artist</TextBlock>
         </Grid>
 
         <StackPanel Margin="5,0" Grid.Column="2" Orientation="Horizontal">
