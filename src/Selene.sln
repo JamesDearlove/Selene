@@ -5,11 +5,9 @@ VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selene", "Selene\Selene.csproj", "{0746022B-4A2F-452B-AEB0-555773D18A11}"
 EndProject
-Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "Selene.Setup", "Selene.Setup\Selene.Setup.wixproj", "{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfAppBar", "WpfAppBar\WpfAppBar.csproj", "{902B86F1-7186-489A-A77E-897230ED7FBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selene.Controls", "Selene.Controls\Selene.Controls.csproj", "{0B0F36D9-BFDE-4F83-98A5-5DD7FCF85D5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Selene.Controls", "Selene.Controls\Selene.Controls.csproj", "{0B0F36D9-BFDE-4F83-98A5-5DD7FCF85D5D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,12 +25,6 @@ Global
 		{0746022B-4A2F-452B-AEB0-555773D18A11}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0746022B-4A2F-452B-AEB0-555773D18A11}.Release|x86.ActiveCfg = Release|Any CPU
 		{0746022B-4A2F-452B-AEB0-555773D18A11}.Release|x86.Build.0 = Release|Any CPU
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Debug|x86.ActiveCfg = Debug|x86
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Debug|x86.Build.0 = Debug|x86
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Release|Any CPU.ActiveCfg = Release|x86
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Release|x86.ActiveCfg = Release|x86
-		{92FDE1F9-8F5F-45D1-B18E-8F0A230F8883}.Release|x86.Build.0 = Release|x86
 		{902B86F1-7186-489A-A77E-897230ED7FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{902B86F1-7186-489A-A77E-897230ED7FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{902B86F1-7186-489A-A77E-897230ED7FBD}.Debug|x86.ActiveCfg = Debug|Any CPU
