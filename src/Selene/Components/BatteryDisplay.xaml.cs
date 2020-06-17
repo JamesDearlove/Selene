@@ -1,21 +1,9 @@
-﻿using Selene.Glyphs;
+﻿using Selene.Flyouts;
+using Selene.Glyphs;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
+using Windows.System.Power;
 
 namespace Selene.Components
 {
@@ -24,87 +12,86 @@ namespace Selene.Components
     /// </summary>
     public partial class BatteryDisplay : System.Windows.Controls.UserControl
     {
-        System.Threading.Timer UpdateTimer;
-
-        double batteryPercent;
-        System.Windows.Forms.PowerLineStatus plStatus;
+        PowerInfoFlyout Flyout;
 
         public BatteryDisplay()
         {
             InitializeComponent();
 
-            UpdateTimer = new System.Threading.Timer(TimerTick, null,
-                TimeSpan.Zero, TimeSpan.FromMilliseconds(1000));
+            Flyout = new PowerInfoFlyout();
+
+            PowerManager.RemainingChargePercentChanged += BatteryInfoChanged;
+            PowerManager.BatteryStatusChanged += BatteryInfoChanged;
+            PowerManager.RemainingDischargeTimeChanged += BatteryInfoChanged;
+            UpdateInfo();
+            UpdateTooltip();
         }
 
-        private async void TimerTick(object state)
+        private void BatteryInfoChanged(object sender, object e)
         {
-            PowerStatus pwr = SystemInformation.PowerStatus;
+            UpdateInfo();
+            UpdateTooltip();
+        }
 
-            var percent = pwr.BatteryLifePercent * 100;
-            if (percent != batteryPercent || pwr.PowerLineStatus != plStatus)
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Flyout.Show(this);
+        }
+
+        private async void UpdateTooltip()
+        {
+            var remainingTime = PowerManager.RemainingDischargeTime;
+            bool charging = PowerManager.PowerSupplyStatus != PowerSupplyStatus.NotPresent;
+            var tooltipText = "";
+
+            if (charging)
             {
-                batteryPercent = percent;
-                plStatus = pwr.PowerLineStatus;
-
-                int percentRange = (int)Math.Floor(percent / 10);
-
-                BatteryLevels level;
-
-                switch (percentRange)
-                {
-                    case 0:
-                        level = BatteryLevels.VerticalBattery0;
-                        break;
-                    case 1:
-                        level = BatteryLevels.VerticalBattery1;
-                        break;
-                    case 2:
-                        level = BatteryLevels.VerticalBattery2;
-                        break;
-                    case 3:
-                        level = BatteryLevels.VerticalBattery3;
-                        break;
-                    case 4:
-                        level = BatteryLevels.VerticalBattery4;
-                        break;
-                    case 5:
-                        level = BatteryLevels.VerticalBattery5;
-                        break;
-                    case 6:
-                        level = BatteryLevels.VerticalBattery6;
-                        break;
-                    case 7:
-                        level = BatteryLevels.VerticalBattery7;
-                        break;
-                    case 8:
-                        level = BatteryLevels.VerticalBattery8;
-                        break;
-                    case 9:
-                        level = BatteryLevels.VerticalBattery9;
-                        break;
-                    case 10:
-                        level = BatteryLevels.VerticalBattery10;
-                        break;
-                    default:
-                        level = BatteryLevels.VerticalBattery0;
-                        break;
-                }
-
-                int batteryLevel = (int)level;
-                if (pwr.PowerLineStatus == System.Windows.Forms.PowerLineStatus.Online)
-                {
-                    batteryLevel += 11;
-                }
-
-                string b = char.ConvertFromUtf32(batteryLevel);
-
-                await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
-                {
-                    BatteryLevelText.Text = percent.ToString() + "%";
-                    BatteryIcon.Text = b;
-                }));
+                tooltipText = "Charging";
             }
+            else
+            {
+                if (remainingTime.TotalDays < 5)
+                {
+                    tooltipText = remainingTime.ToString("%h' hr '%m' min remaining'");
+                }
+                else
+                {
+                    var remainingCharge = PowerManager.RemainingChargePercent;
+                    tooltipText = $"{remainingCharge}% remaining";
+                }
+            }
+
+            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                ControlButton.ToolTip = tooltipText;
+            }));
+        }
+
+        private async void UpdateInfo()
+        {
+            var batteryText = "?";
+            var batteryGlyph = char.ConvertFromUtf32((int)BatteryLevels.VerticalBatteryUnknown);
+
+            if (PowerManager.BatteryStatus != BatteryStatus.NotPresent)
+            {
+                var remaining = PowerManager.RemainingChargePercent;
+
+                batteryText = $"{remaining}%";
+                if (PowerManager.PowerSupplyStatus == PowerSupplyStatus.NotPresent)
+                {
+                    batteryGlyph = GlyphMethods.BatteryNormalGlyph(remaining);
+                }
+                else
+                {
+                    batteryGlyph = GlyphMethods.BatteryChargingGlyph(remaining);
+                }
+            }
+
+            await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
+            {
+                BatteryLevelText.Text = batteryText;
+                BatteryIcon.Text = batteryGlyph;
+            }));
         }
     }
 }
