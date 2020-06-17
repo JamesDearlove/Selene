@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Windows.System;
 
 namespace Selene.Components
 {
@@ -25,9 +26,11 @@ namespace Selene.Components
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            System.Diagnostics.Process.Start("ms-actioncenter:");
+            var uri = new Uri("ms-actioncenter:");
+
+            await Launcher.LaunchUriAsync(uri);
         }
     }
 }

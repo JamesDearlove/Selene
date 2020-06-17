@@ -95,11 +95,118 @@ namespace Selene.Glyphs
         }
 
         /// <summary>
-        /// Gives the glyph that represents the current battery charge.
+        /// Gives a battery glyph that represents the current battery charge.
         /// </summary>
         /// <param name="percent">Current battery percentage</param>
         /// <returns>A string containing the glyph.</returns>
         public static string BatteryNormalGlyph(double percent)
+        {
+            int percentRange = DetermineGlyphNumber(percent);
+            BatteryLevels level;
+
+            switch (percentRange)
+            {
+                case 0:
+                    level = BatteryLevels.Battery0;
+                    break;
+                case 1:
+                    level = BatteryLevels.Battery1;
+                    break;
+                case 2:
+                    level = BatteryLevels.Battery2;
+                    break;
+                case 3:
+                    level = BatteryLevels.Battery3;
+                    break;
+                case 4:
+                    level = BatteryLevels.Battery4;
+                    break;
+                case 5:
+                    level = BatteryLevels.Battery5;
+                    break;
+                case 6:
+                    level = BatteryLevels.Battery6;
+                    break;
+                case 7:
+                    level = BatteryLevels.Battery7;
+                    break;
+                case 8:
+                    level = BatteryLevels.Battery8;
+                    break;
+                case 9:
+                    level = BatteryLevels.Battery9;
+                    break;
+                case 10:
+                    level = BatteryLevels.Battery10;
+                    break;
+                default:
+                    level = BatteryLevels.Battery0;
+                    break;
+            }
+
+            return char.ConvertFromUtf32((int)level);
+        }
+
+        /// <summary>
+        /// Gives a battery glyph that represents the current battery charge 
+        /// and that the battery is currently charging.
+        /// </summary>
+        /// <param name="percent">Current battery percentage</param>
+        /// <returns>A string containing the glyph.</returns>
+        public static string BatteryChargingGlyph(double percent)
+        {
+            int percentRange = DetermineGlyphNumber(percent);
+            BatteryLevels level;
+
+            switch (percentRange)
+            {
+                case 0:
+                    level = BatteryLevels.BatteryCharging0;
+                    break;
+                case 1:
+                    level = BatteryLevels.BatteryCharging1;
+                    break;
+                case 2:
+                    level = BatteryLevels.BatteryCharging2;
+                    break;
+                case 3:
+                    level = BatteryLevels.BatteryCharging3;
+                    break;
+                case 4:
+                    level = BatteryLevels.BatteryCharging4;
+                    break;
+                case 5:
+                    level = BatteryLevels.BatteryCharging5;
+                    break;
+                case 6:
+                    level = BatteryLevels.BatteryCharging6;
+                    break;
+                case 7:
+                    level = BatteryLevels.BatteryCharging7;
+                    break;
+                case 8:
+                    level = BatteryLevels.BatteryCharging8;
+                    break;
+                case 9:
+                    level = BatteryLevels.BatteryCharging9;
+                    break;
+                case 10:
+                    level = BatteryLevels.BatteryCharging10;
+                    break;
+                default:
+                    level = BatteryLevels.BatteryCharging0;
+                    break;
+            }
+
+            return char.ConvertFromUtf32((int)level);
+        }
+
+        /// <summary>
+        /// Gives a vertical battery glyph that represents the current battery charge.
+        /// </summary>
+        /// <param name="percent">Current battery percentage</param>
+        /// <returns>A string containing the glyph.</returns>
+        public static string BatteryVerticalNormalGlyph(double percent)
         {
             int percentRange = DetermineGlyphNumber(percent);
             BatteryLevels level;
@@ -148,12 +255,12 @@ namespace Selene.Glyphs
         }
 
         /// <summary>
-        /// Gives the glyph that represents the current battery charge 
+        /// Gives a vertical battery glyph that represents the current battery charge 
         /// and that the battery is currently charging.
         /// </summary>
         /// <param name="percent">Current battery percentage</param>
         /// <returns>A string containing the glyph.</returns>
-        public static string BatteryChargingGlyph(double percent)
+        public static string BatteryVerticalChargingGlyph(double percent)
         {
             int percentRange = DetermineGlyphNumber(percent);
             BatteryLevels level;

@@ -41,29 +41,62 @@ namespace Selene.Components
         private async void UpdateTooltip()
         {
             var remainingTime = PowerManager.RemainingDischargeTime;
+            var remainingCharge = PowerManager.RemainingChargePercent;
             bool charging = PowerManager.PowerSupplyStatus != PowerSupplyStatus.NotPresent;
             var tooltipText = "";
+            var flyoutText = "";
 
             if (charging)
             {
-                tooltipText = "Charging";
+                if (remainingCharge == 100)
+                {
+                    tooltipText = "Fully charged";
+                }
+                else if (PowerManager.BatteryStatus == BatteryStatus.Charging)
+                {
+                    tooltipText = "Charging";
+                }
+                else if (PowerManager.BatteryStatus == BatteryStatus.Idle)
+                {
+                    tooltipText = "Plugged in";
+                }
+                flyoutText = tooltipText;
             }
             else
             {
                 if (remainingTime.TotalDays < 5)
                 {
                     tooltipText = remainingTime.ToString("%h' hr '%m' min remaining'");
+
+                    if (remainingTime.TotalHours > 1)
+                    {
+                        flyoutText += remainingTime.ToString("%h' hours '");
+                    }
+                    else if (remainingTime.TotalHours == 1)
+                    {
+                        flyoutText += remainingTime.ToString("%h' hour '");
+                    }
+                    if (remainingTime.TotalMinutes > 1)
+                    {
+                        flyoutText += remainingTime.ToString("%m' minutes '");
+                    }
+                    else if (remainingTime.TotalMinutes == 1)
+                    {
+                        flyoutText += remainingTime.ToString("%m' minute '");
+                    }
+                    flyoutText += "remaining";
                 }
                 else
                 {
-                    var remainingCharge = PowerManager.RemainingChargePercent;
                     tooltipText = $"{remainingCharge}% remaining";
+                    flyoutText = tooltipText;
                 }
             }
 
             await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
             {
                 ControlButton.ToolTip = tooltipText;
+                Flyout.BatteryTimeText.Text = flyoutText;
             }));
         }
 
@@ -79,11 +112,11 @@ namespace Selene.Components
                 batteryText = $"{remaining}%";
                 if (PowerManager.PowerSupplyStatus == PowerSupplyStatus.NotPresent)
                 {
-                    batteryGlyph = GlyphMethods.BatteryNormalGlyph(remaining);
+                    batteryGlyph = GlyphMethods.BatteryVerticalNormalGlyph(remaining);
                 }
                 else
                 {
-                    batteryGlyph = GlyphMethods.BatteryChargingGlyph(remaining);
+                    batteryGlyph = GlyphMethods.BatteryVerticalChargingGlyph(remaining);
                 }
             }
 

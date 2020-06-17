@@ -6,9 +6,13 @@
         xmlns:control="clr-namespace:Selene.Controls;assembly=Selene.Controls"
         xmlns:local="clr-namespace:Selene.Flyouts"
         mc:Ignorable="d"
-        Title="PowerInfoFlyout" Height="100" Width="150">
-    <Grid>
-        <Button Click="Button_Click" >Do Things</Button>
-        <!--<TextBlock x:Name="WriteHere"></TextBlock>-->
+        Title="PowerInfoFlyout" Height="100" Width="200">
+    <Grid Margin="5" Background="Black">
+        <TextBlock x:Name="BatteryTimeText" Foreground="{DynamicResource TextColor}" Style="{DynamicResource BodyTextStyle}" TextWrapping="WrapWithOverflow" VerticalAlignment="Top">12 hours 20 minutes remaining</TextBlock>
+
+        <StackPanel VerticalAlignment="Bottom">
+            <TextBlock x:Name="BatterySettingsLink" Style="{DynamicResource LinkTextStyle}" FontSize="14" HorizontalAlignment="Left" MouseUp="BatterySettingsLink_MouseUp">Battery Settings</TextBlock>
+            <TextBlock x:Name="BatteryUsageLink" Style="{DynamicResource LinkTextStyle}" FontSize="14" HorizontalAlignment="Left" MouseUp="BatteryUsageLink_MouseUp">Battery Usage</TextBlock>
+        </StackPanel>
     </Grid>
 </control:FlyoutWindow>

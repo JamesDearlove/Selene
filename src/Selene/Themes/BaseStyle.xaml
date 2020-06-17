@@ -59,13 +59,50 @@
             </Style>
         </Style.Resources>
     </Style>
+
+    <Style x:Key="HeaderTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="46px"/>
+        <Setter Property="LineHeight" Value="56px"/>
+    </Style>
+    <Style x:Key="SubheaderTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI Light"/>
+        <Setter Property="FontSize" Value="34px"/>
+        <Setter Property="LineHeight" Value="40px"/>
+    </Style>
+    <Style x:Key="TitleTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI Semilight"/>
+        <Setter Property="FontSize" Value="24px"/>
+        <Setter Property="LineHeight" Value="28px"/>
+    </Style>
+    <Style x:Key="SubtitleTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="20px"/>
+        <Setter Property="LineHeight" Value="24px"/>
+    </Style>
+    <Style x:Key="BaseTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI Semibold"/>
+        <Setter Property="FontSize" Value="14px"/>
+        <Setter Property="LineHeight" Value="20px"/>
+    </Style>
+    <Style x:Key="BodyTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14px"/>
+        <Setter Property="LineHeight" Value="20px"/>
+    </Style>
+    <Style x:Key="CaptionTextStyle" TargetType="{x:Type TextBlock}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="12px"/>
+        <Setter Property="LineHeight" Value="14px"/>
+    </Style>
+    
     <Style x:Key="MDL2Symbol" TargetType="{x:Type TextBlock}">
         <Setter Property="FontFamily" Value="Segoe MDL2 Assets"/>
         <Setter Property="FontSize" Value="16"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
         <Setter Property="TextAlignment" Value="Center"/>
     </Style>
-    <Style TargetType="TextBlock" x:Key="HoverUnderlineStyle">
+    <Style x:Key="LinkTextStyle" TargetType="TextBlock">
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Foreground" Value="{DynamicResource AccentColor}"/>
         <Style.Triggers>

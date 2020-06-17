@@ -42,7 +42,7 @@
                 <TextBlock Margin="5,0">-</TextBlock>
                 <TextBlock x:Name="VersionText" >Version 1.0</TextBlock>
                 <TextBlock Margin="5,0">-</TextBlock>
-            <TextBlock x:Name="GithubText" Style="{DynamicResource HoverUnderlineStyle}" MouseUp="GithubText_MouseUp">Github</TextBlock>
+                <TextBlock x:Name="GithubText" Style="{DynamicResource LinkTextStyle}" MouseUp="GithubText_MouseUp">Github</TextBlock>
             </StackPanel>
             
         </Grid>

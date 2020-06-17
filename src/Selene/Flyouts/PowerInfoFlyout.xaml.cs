@@ -9,8 +9,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Selene.Controls;
-using Windows.System.Power;
+using Selene.Glyphs;
+using Windows.System;
 
 namespace Selene.Flyouts
 {
@@ -24,19 +26,18 @@ namespace Selene.Flyouts
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void BatterySettingsLink_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine(PowerManager.BatteryStatus);
-            Console.WriteLine(PowerManager.EnergySaverStatus);
-            Console.WriteLine(PowerManager.RemainingChargePercent);
-            Console.WriteLine(PowerManager.RemainingDischargeTime);
+            var uri = new Uri("ms-settings:batterysaver");
 
-            PowerManager.RemainingChargePercentChanged += PowerManager_RemainingChargePercentChanged;
+            await Launcher.LaunchUriAsync(uri);
         }
 
-        private void PowerManager_RemainingChargePercentChanged(object sender, object e)
+        private async void BatteryUsageLink_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            throw new NotImplementedException();
+            var uri = new Uri("ms-settings:batterysaver-usagedetails");
+
+            await Launcher.LaunchUriAsync(uri);
         }
     }
 }
