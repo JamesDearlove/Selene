@@ -57,6 +57,7 @@ namespace Selene
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             AppBarFunctions.SetAppBar(this, ABEdge.None);
+            System.Windows.Application.Current.Shutdown();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
