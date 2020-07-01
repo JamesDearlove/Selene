@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Selene.Flyouts"
         mc:Ignorable="d"
         Title="PowerInfoFlyout" Height="100" Width="200">
-    <Grid Margin="5" Background="Black">
+    <Grid Margin="5">
         <TextBlock x:Name="BatteryTimeText" Foreground="{DynamicResource TextColor}" Style="{DynamicResource BodyTextStyle}" TextWrapping="WrapWithOverflow" VerticalAlignment="Top">12 hours 20 minutes remaining</TextBlock>
 
         <StackPanel VerticalAlignment="Bottom">

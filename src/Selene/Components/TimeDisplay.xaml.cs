@@ -42,6 +42,7 @@ namespace Selene.Components
                 await Dispatcher.BeginInvoke(DispatcherPriority.Send, new Action(() =>
                 {
                     CurrentTimeText.Text = DateTime.Now.ToString("hh:mm:ss tt");
+                    ComponentButton.ToolTip = DateTime.Now.ToLongDateString();
                 }));
             }
             catch (TaskCanceledException) { }

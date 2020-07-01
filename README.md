@@ -2,19 +2,14 @@
 
 [![Build Status](https://dev.azure.com/JamesDearlove/Selene/_apis/build/status/Selene%20Master%20Build?branchName=master)](https://dev.azure.com/JamesDearlove/Selene/_build/latest?definitionId=3&branchName=master)
 
-A system status bar built for Windows.
+A system-wide status bar built for Windows.
 
 ## Compatibility
 
-Selene uses Windows 10 Runtimes and features only available on Windows 10 1809 and later
-
-|       Windows Version       |    Status    |
-| --------------------------- | ------------ |
-| Windows 10 1803 and Earlier | Incompatible |
-|       Windows 10 1809       |   Untested   |
-|  Windows 10 1903 and Later  |  Compatible  |
+Selene utilises certain Windows 10 Runtime API features that are only available in **Windows 10 1809 (Build 17763)** or later.
 
 ## Building
+
 Visual Studio 2019 with the .NET desktop development workload and Windows 10 SDK (10.0.18362.0) is required to build the project.
 
 Ensure you complete a NuGet restore before attempting to build the solution.

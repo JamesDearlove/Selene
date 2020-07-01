@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Selene.Components"
              mc:Ignorable="d" 
-             d:DesignHeight="30" d:DesignWidth="400" Unloaded="UserControl_Unloaded">
-    <Button Style="{DynamicResource ComponentButton}" Click="Button_Click">
+             d:DesignHeight="30" d:DesignWidth="200" Unloaded="UserControl_Unloaded">
+    <Button x:Name="ComponentButton" Style="{DynamicResource ComponentButton}" Click="Button_Click">
         <StackPanel>
             <TextBlock Style="{DynamicResource MDL2Symbol}">&#xE121;</TextBlock>
             <Separator/>
