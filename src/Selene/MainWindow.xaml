@@ -13,7 +13,8 @@
         Closing="Window_Closing" 
         Background="#00000000"
         AllowsTransparency="True"
-        WindowStyle="None" ShowInTaskbar="False">
+        WindowStyle="None" 
+        ShowInTaskbar="False"> 
 
     <Grid x:Name="windowGrid">
         <StackPanel x:Name="LeftPanel" Orientation="Horizontal" HorizontalAlignment="Left">
