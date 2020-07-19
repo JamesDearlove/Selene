@@ -12,7 +12,6 @@
 
         <StackPanel VerticalAlignment="Bottom">
             <TextBlock x:Name="BatterySettingsLink" Style="{DynamicResource LinkTextStyle}" FontSize="14" HorizontalAlignment="Left" MouseUp="BatterySettingsLink_MouseUp">Battery Settings</TextBlock>
-            <TextBlock x:Name="BatteryUsageLink" Style="{DynamicResource LinkTextStyle}" FontSize="14" HorizontalAlignment="Left" MouseUp="BatteryUsageLink_MouseUp">Battery Usage</TextBlock>
         </StackPanel>
     </Grid>
 </control:FlyoutWindow>

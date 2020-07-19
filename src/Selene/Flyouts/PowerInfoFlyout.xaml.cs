@@ -32,12 +32,5 @@ namespace Selene.Flyouts
 
             await Launcher.LaunchUriAsync(uri);
         }
-
-        private async void BatteryUsageLink_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            var uri = new Uri("ms-settings:batterysaver-usagedetails");
-
-            await Launcher.LaunchUriAsync(uri);
-        }
     }
 }
