@@ -2,7 +2,7 @@
 
 ## General
 
-* [ ] Start at start-up
+* [x] Start at start-up
 * [x] App Installer
 
 ## Status Icons
@@ -17,7 +17,7 @@
   * [ ] Battery Modes
 * [ ] Clock
   * [x] Display time
-  * [ ] Display Date
+  * [x] Display Date
 * [ ] Action Center
   * [x] Show action center
   * [ ] Fix Double click

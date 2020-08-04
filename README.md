@@ -4,6 +4,8 @@
 
 A system-wide status bar built for Windows.
 
+![Selene Running](images/desktop.png "Selene Demo")
+
 ## Compatibility
 
 Selene utilises certain Windows 10 Runtime API features that are only available in **Windows 10 1809 (Build 17763)** or later.
